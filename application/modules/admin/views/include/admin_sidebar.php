@@ -2,7 +2,7 @@
 <!-- Brand Logo -->
     <a href="<?= base_url() ?>admin/dashboard" class="brand-link navbar-success">
       <img src="<?= base_url() ?>public/dist/img/logo.png" alt="Pascasarjana UMY" class="brand-image">
-      <span class="brand-text font-weight-light">SIM Pasca UMY</span>
+      <span class="brand-text font-weight-light">SIPasca UMY</span>
     </a>
 
     <!-- Sidebar -->
