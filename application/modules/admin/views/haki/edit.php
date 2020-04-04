@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Publikasi</h1>
+            <h1>Edit Haki</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?= base_url('admin');?>">Home</a></li>
-              <li class="breadcrumb-item active">Tambah Penelitian</li>
+              <li class="breadcrumb-item active">Edit Haki</li>
             </ol>
           </div>
         </div>
@@ -40,11 +40,14 @@
             </div>
           <?php endif; ?>
 
-      
+	<?php
+		foreach($edit_haki->result_array() as $b){
+	?>
+
       <div class="row">
         
         <div class="col-md-6">
-          <?php echo form_open_multipart(base_url('admin/publikasi/tambah'), '' )?>
+          <?php echo form_open_multipart(base_url('admin/haki/update'), '' )?>
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title">Informasi Umum</h3>
@@ -56,13 +59,13 @@
 
             <div class="card-body">
               <div class="form-group">
-                <label for="judul">Judul Publikasi</label>
-                <input name="judul_publikasi" value="<?php if(validation_errors()) {echo set_value('judul_publikasi'); } ?>" type="text" id="judul" class="form-control" required="required">
+                <label for="judul">Judul Haki</label>
+                <input name="judul_haki" value="<?=$b['judul_haki']; ?>" type="text" id="judul" class="form-control" required="required">
               </div>
 
               <div class="form-group">
                 <label for="deskripsi">Deskripsi Singkat</label>
-                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="4"><?php if(validation_errors()) {echo set_value('deskripsi'); } ?></textarea>
+                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="4"><?=$b['deskripsi']; ?></textarea>
               </div>
 
               
@@ -84,37 +87,6 @@
 
 
 
-		<div class="form-group">
-                <label for="deskripsi">Jenis Publikasi</label>
-   <select name="id_jenis_publikasi"  onchange='jenis_publikasi(this);' required class="form-control">
-  				<option value="">Pilih..</option>
-  				<?php 
-			  $jenis_publikasi=$this->db->query("select * from jenis_publikasi  ");
-			  foreach($jenis_publikasi->result_array() as $b) 
-			  { 
-			  ?>
-			  <option value="<?=$b['id_jenis_publikasi'];?>" ><?=$b['jenis_publikasi'];?></option>
-			  <?php } ?>
-			  </select>
-              </div>
-
- 			
-            
-            <div class="form-group">
-                <label for="deskripsi">Sub Jenis Publikasi</label>
-   <div id="jeispub"> 				<select required class="form-control"></select> 				</div>
-              </div>
-
-  
-		
-  
-
-
-
-
-
-
-
               <div class="form-group">
                 <label for="dosen">Dosen yang mengajukan</label>
                 
@@ -128,8 +100,9 @@
             	<?php
 					foreach($dosen->result_array() as $a)    
 					{
+						if($a['id']==$b['id_dosen']){$select="selected";}else{$select="";}
 					?>
-             <option value="<?=$a['id'];?>"><?=$a['firstname'];?></option>
+             <option value="<?=$a['id'];?>"  <?=$select;?>><?=$a['firstname'];?></option>
                   
 					<?php
 					}
@@ -158,7 +131,13 @@
                         <i class="far fa-calendar-alt"></i>
                       </span>
                     </div>
-                    <input name="tgl_pelaksanaan" type="text" class="form-control float-right" id="tanggal" required="required" >
+                    
+					<?php
+					$tgl_pelaksanaan=explode("-",$b['tgl_pelaksanaan']);
+					$tgl_pelaksanaan=$tgl_pelaksanaan[1]."/".$tgl_pelaksanaan[0]."/".$tgl_pelaksanaan[2];
+					
+					?>                    
+                    <input name="tgl_pelaksanaan" value="<?=$tgl_pelaksanaan;?>" type="text" class="form-control float-right" id="tanggal">
                   </div>
                   <!-- /.input group -->
                 </div>
@@ -182,30 +161,25 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="inputEstimatedBudget">Unggah Proposal</label>
-                <input name="file_publikasi" type="file" id="inputEstimatedBudget" class="form-control" required>
+                <input name="file_haki" type="file" id="inputEstimatedBudget" class="form-control">
+                <input name="file_hidden" type="hidden" value="<?=$b['file'];?>" />
+                <input name="id_haki" type="hidden" value="<?=$b['id_haki'];?>" />
               </div>             
              
             </div>
             <!-- /.card-body -->
-            
-            
-            
-  
- 
-            
-            
-            
-            
           </div>
           <!-- /.card -->
         </div>
         <div class="col-md-12">
           <a href="#" class="btn btn-secondary">Batal</a>
-          <input type="submit" name="submit" value="Tambahkan Publikasi" class="btn btn-success float-right">
+          <input type="submit" name="submit" value="Ubah Haki" class="btn btn-success float-right">
         </div>
         <?php echo form_close(); ?>
       </div>
-     
+     <?php
+    }
+	?>    
       
     </section>
     <!-- /.content -->
@@ -226,8 +200,8 @@
   });
 });
   
-  $("#publikasi").addClass('menu-open');
-  $("#publikasi .tambahpublikasi a.nav-link").addClass('active');
+  $("#haki").addClass('menu-open');
+  $("#haki .tambahbaru a.nav-link").addClass('active');
 </script>
 
 

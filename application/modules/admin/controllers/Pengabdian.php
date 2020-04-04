@@ -30,6 +30,107 @@
 			$this->load->view('admin/layout', $data);
 
 		}
+		
+		
+		
+		public function edit($id_pengabdian){
+			
+
+					
+					$data['edit_pengabdian'] = $this->pengabdian_model->edit_pengabdian($id_pengabdian);
+					$data['dosen'] = $this->pengabdian_model->dosen();
+					$data['view'] = 'pengabdian/edit';
+					$this->load->view('admin/layout', $data);
+			
+		}		
+		
+		
+		
+		public function update(){
+			
+
+			if($this->input->post('submit')){
+
+				$this->form_validation->set_rules('judul_pengabdian', 'Judul Pengabdian', 'trim|required');
+				$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
+				
+	
+				if ($this->form_validation->run() == FALSE) {		
+				
+					$data['edit_pengabdian'] = $this->pengabdian_model->edit_pengabdian($this->input->post('id_penelitian'));
+					$data['dosen'] = $this->pengabdian_model->dosen();
+					$data['view'] = 'pengabdian/edit';
+					$this->load->view('admin/layout', $data);
+				}
+				else{ 
+
+
+					if($_FILES['file_pengabdian']['name']=="")
+					{
+						$file_pengabdian=$_POST['file_hidden'];
+					}
+					else
+					{
+						
+					$upload_path = './uploads/pengabdian';
+
+						if (!is_dir($upload_path)) {
+						     mkdir($upload_path, 0777, TRUE);					
+						}
+						//$newName = "hrd-".date('Ymd-His');
+						$config = array(
+								'upload_path' => $upload_path,
+								'allowed_types' => "doc|docx|xls|xlsx|ppt|pptx|odt|rtf|jpg|png|pdf",
+								'overwrite' => FALSE,				
+						);					
+
+						$this->load->library('upload', $config);
+						$this->upload->do_upload('file_pengabdian');
+					    $pengabdian = $this->upload->data();
+						
+						$file_pengabdian=$upload_path.'/'.$pengabdian['file_name']; 
+						
+						unlink($this->input->post('file_hidden'));
+
+					}	
+						$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
+						$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
+						
+										
+						
+						
+
+						$data = array(
+									
+							'judul_pengabdian' => $this->input->post('judul_pengabdian'),
+							'file' => $file_pengabdian,
+							
+
+							'lokasi' => $this->input->post('lokasi'),
+							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+							'deskripsi' => $this->input->post('deskripsi'),
+							'id_dosen' => $this->input->post('id_dosen'),
+							
+							
+						);
+						
+						$where = array('id_pengabdian' => $this->input->post('id_pengabdian'));
+						
+						
+						$data = $this->security->xss_clean($data);
+						$result = $this->pengabdian_model->update($data, $where);
+
+						if($result){
+							$this->session->set_flashdata('msg', 'Data telah diUbah!');
+							redirect(base_url('admin/pengabdian/edit/'.$this->input->post('id_pengabdian')));
+						} 
+
+					} 
+
+				}			
+		}		
+		
+		
 
 		public function tambah(){
 			if($this->input->post('submit')){

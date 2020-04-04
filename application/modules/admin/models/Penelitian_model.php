@@ -79,8 +79,17 @@
 
 		  	where a.id_penelitian='$id_penelitian' ");
 
-	
 			}
+			
+		
+			public function edit_penelitian($id_penelitian)
+			{
+			return $this->db->query("select * from penelitian 	where id_penelitian='$id_penelitian' ");
+
+			}
+			
+			
+			
 		
 		
 			public function dokumentasi_kegiatan($id_penelitian)
@@ -95,6 +104,12 @@
 			return $this->db->update('penelitian', $data, $where);
 			}		
 		
+			//edit pencil
+			public function update($data, $where)
+			{
+			return $this->db->update('penelitian', $data, $where);
+			}	
+					
 		
 			public function dosen()
 			{

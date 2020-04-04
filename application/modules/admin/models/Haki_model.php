@@ -82,7 +82,18 @@
 	
 			}
 		
+
+
 		
+			public function edit_haki($id_haki)
+			{
+			return $this->db->query("select * from haki 	where id_haki='$id_haki' ");
+
+			}
+			
+
+
+
 			public function dokumentasi_kegiatan($id_haki)
 			{
 			return $this->db->query("select * from dokumentasi_kegiatan  where id_haki='$id_haki' ");
@@ -94,8 +105,13 @@
 			{
 			return $this->db->update('haki', $data, $where);
 			}		
-		
-		
+			
+			//edit pencil
+			public function update($data, $where)
+			{
+			return $this->db->update('haki', $data, $where);
+			}
+						
 			public function dosen()
 			{
 		 	if($this->session->userdata('id_prodi')==0)

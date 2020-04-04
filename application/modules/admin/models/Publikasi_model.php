@@ -94,6 +94,14 @@
 			}
 		
 		
+			public function edit_publikasi($id_publikasi)
+			{
+			return $this->db->query("select * from publikasi 	where id_publikasi='$id_publikasi' ");
+
+			}
+					
+		
+		
 			public function dokumentasi_kegiatan($id_publikasi)
 			{
 			return $this->db->query("select * from dokumentasi_kegiatan  where id_publikasi='$id_publikasi' ");
@@ -106,7 +114,14 @@
 			return $this->db->update('publikasi', $data, $where);
 			}		
 		
-		
+			//edit pencil
+			public function update($data, $where)
+			{
+			return $this->db->update('publikasi', $data, $where);
+			}	
+
+
+
 			public function dosen()
 			{
 		 	if($this->session->userdata('id_prodi')==0)

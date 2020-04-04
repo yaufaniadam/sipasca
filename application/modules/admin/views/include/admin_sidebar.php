@@ -79,7 +79,7 @@
 
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" id="pengabdian">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hand-holding-heart"></i>
               <p>
@@ -88,7 +88,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item semuapengabdian">
                 <a href="<?=base_url('admin/pengabdian');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Semua Pengabdian</p>
@@ -97,7 +97,7 @@
               
               <?php if($this->session->userdata('is_admin')==2) { ?>           
                 
-                <li class="nav-item">
+                <li class="nav-item tambahpengabdian">
                   <a href="<?= base_url('admin/pengabdian/tambah') ?>" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tambah Pengabdian</p>
@@ -108,7 +108,7 @@
 
             </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" id="haki">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shield-alt"></i>
               <p>
@@ -117,7 +117,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item semuahaki">
                 <a href="<?=base_url('admin/haki');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Semua HAKI</p>
@@ -126,7 +126,7 @@
               
               <?php if($this->session->userdata('is_admin')==2) { ?>
               
-              <li class="nav-item">
+              <li class="nav-item tambahhaki">
                 <a href="<?= base_url('admin/haki/tambah') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah HAKI</p>
@@ -139,7 +139,7 @@
           </li>
 
     
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" id="buku">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -148,7 +148,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item semuabuku">
                 <a href="<?=base_url('admin/buku');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Semua Buku</p>
@@ -157,7 +157,7 @@
               
               <?php if($this->session->userdata('is_admin')==2) { ?>
               
-              <li class="nav-item">
+              <li class="nav-item tambahbuku">
                 <a href="<?= base_url('admin/buku/tambah') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Buku</p>

@@ -22,7 +22,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?=base_url(); ?>">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Publikasi</li>
             </ol>
           </div>
@@ -55,7 +55,7 @@
                <?php if($this->session->userdata('id_prodi')==0){?>   
                   <th class="text-center">Prodi</th>  
                <?php }  ?>                    
-                  <th class="text-center">Tanggal Pelaksanaan</th>
+                  <th class="text-center">Pelaksanaan</th>
                   <th class="text-center">Status</th>
                   <th class="text-center">Aksi</th>
                 </tr>
@@ -91,19 +91,19 @@
                      <br /><br />
                      
                       <?php
-	if($row['hasil_penilaian']==1)
-	{
-	  echo "Diterima";
-	}
-	elseif($row['hasil_penilaian']==2)
-	{
-	echo "Tidak Diterima";
-	}
-	else
-	{
-	echo "<font color=red><em>Tunggu Penilaian</em></font>";
-	}
-	?>
+					if($row['hasil_penilaian']==1)
+					{
+					  echo "Diterima";
+					}
+					elseif($row['hasil_penilaian']==2)
+					{
+					echo "Tidak Diterima";
+					}
+					else
+					{
+					echo "<font color=red><em>Tunggu Penilaian</em></font>";
+					}
+					?>
                      
                       
                       </td>
@@ -112,6 +112,13 @@
                           <i class="fa fa-eye" style="color:green;"></i>
                         </a>
                         <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/publikasi/hapus/'.$row['id_publikasi']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                        
+                        
+                        
+   						<a class="btn btn-default btn-sm" href="<?=base_url('admin/publikasi/edit/'.$row['id_publikasi']); ?>">
+                          <i class="fas fa-pencil-alt" style="color:green;"></i>
+                        </a>                        
+                        
                       </td>
                     </tr>  
                   <?php } ?>  

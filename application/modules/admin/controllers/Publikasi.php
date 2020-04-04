@@ -30,6 +30,106 @@
 			$this->load->view('admin/layout', $data);
 
 		}
+		
+		
+		public function edit( $id_publikasi ){		
+			
+			
+					$data['edit_publikasi'] = $this->publikasi_model->edit_publikasi($id_publikasi);
+					$data['dosen'] = $this->publikasi_model->dosen();
+					$data['view'] = 'publikasi/edit';
+					$this->load->view('admin/layout', $data);
+		}
+		
+		
+		
+		
+		public function update(){		
+			
+				if($this->input->post('submit')){
+
+				$this->form_validation->set_rules('judul_publikasi', 'Judul Publikasi', 'trim|required');
+				$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
+				
+	
+				if ($this->form_validation->run() == FALSE) {
+
+					$data['edit_publikasi'] = $this->penelitian_model->edit_publikasi($this->input->post('id_publikasi'));
+					$data['dosen'] = $this->penelitian_model->dosen();
+					$data['view'] = 'publikasi/edit';
+					$this->load->view('admin/layout', $data);
+				}
+				else{ 
+				
+				
+					if($_FILES['file_publikasi']['name']=="")
+					{
+						$file_publikasi=$_POST['file_hidden'];
+					}
+					else
+					{
+					$upload_path = './uploads/publikasi';
+
+						if (!is_dir($upload_path)) {
+						     mkdir($upload_path, 0777, TRUE);					
+						}
+						//$newName = "hrd-".date('Ymd-His');
+						$config = array(
+								'upload_path' => $upload_path,
+								'allowed_types' => "doc|docx|xls|xlsx|ppt|pptx|odt|rtf|jpg|png|pdf",
+								'overwrite' => FALSE,				
+						);					
+
+						$this->load->library('upload', $config);
+						$this->upload->do_upload('file_publikasi');
+					    $publikasi = $this->upload->data();
+						
+						$file_publikasi=$upload_path.'/'.$publikasi['file_name']; 
+						
+						unlink($this->input->post('file_hidden'));
+					
+						}	
+						
+											
+						$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
+						$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
+						
+						
+
+						$data = array(
+									
+							'judul_publikasi' => $this->input->post('judul_publikasi'),
+							'date' => date('Y-m-d'),		
+							'file' => $file_publikasi,
+							
+
+							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+							'deskripsi' => $this->input->post('deskripsi'),
+							'id_dosen' => $this->input->post('id_dosen'),
+							'id_jenis_publikasi'=>$this->input->post('id_jenis_publikasi'),
+							'id_sub_jenis_publikasi'=>$this->input->post('id_sub_jenis_publikasi'),
+							'sub_jenis_publikasi_text'=>$this->input->post('sub_jenis_publikasi_text')
+							
+						);
+						
+						
+						$where = array('id_publikasi' => $this->input->post('id_publikasi'));	
+														
+						$data = $this->security->xss_clean($data);
+						$result = $this->publikasi_model->update($data, $where);
+
+						if($result){
+							$this->session->set_flashdata('msg', 'Data telah diUbah!');
+							redirect(base_url('admin/publikasi/edit/'.$this->input->post('id_publikasi')));
+						} 
+
+					} 
+
+				}					
+					
+		}		
+		
+		
 
 		public function tambah(){
 			if($this->input->post('submit')){

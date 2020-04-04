@@ -20,6 +20,9 @@
 
 		}
 
+
+
+
 		public function detail($id_haki){		
 			
 			$data['view'] = 'haki/detail'; //lokasinya di /modules/Penelitian/views
@@ -30,6 +33,110 @@
 			$this->load->view('admin/layout', $data);
 
 		}
+
+		public function edit($id_haki){
+			
+
+					
+					$data['edit_haki'] = $this->haki_model->edit_haki($id_haki);
+					$data['dosen'] = $this->haki_model->dosen();
+					$data['view'] = 'haki/edit';
+					$this->load->view('admin/layout', $data);
+			
+		}
+
+
+
+		public function update(){
+			
+
+				if($this->input->post('submit')){
+
+				$this->form_validation->set_rules('judul_haki', 'Judul Haki', 'trim|required');
+				$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
+				
+	
+				if ($this->form_validation->run() == FALSE) {		
+				
+					$data['edit_haki'] = $this->haki_model->edit_haki($this->input->post('id_haki'));
+					$data['dosen'] = $this->haki_model->dosen();
+					$data['view'] = 'haki/edit';
+					$this->load->view('admin/layout', $data);
+				}
+				else{ 
+				
+					if($_FILES['file_haki']['name']=="")
+					{
+						$file_haki=$_POST['file_hidden'];
+					}
+					else
+					{				
+
+					$upload_path = './uploads/haki';
+
+						if (!is_dir($upload_path)) {
+						     mkdir($upload_path, 0777, TRUE);					
+						}
+						//$newName = "hrd-".date('Ymd-His');
+						$config = array(
+								'upload_path' => $upload_path,
+								'allowed_types' => "doc|docx|xls|xlsx|ppt|pptx|odt|rtf|jpg|png|pdf",
+								'overwrite' => FALSE,				
+						);					
+
+						$this->load->library('upload', $config);
+						$this->upload->do_upload('file_haki');
+					    $haki = $this->upload->data();
+						
+
+						$file_haki=$upload_path.'/'.$haki['file_name']; 
+						
+						unlink($this->input->post('file_hidden'));
+
+						
+					}
+											
+						$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
+						$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
+						
+										
+						
+						
+
+						$data = array(
+									
+							'judul_haki' => $this->input->post('judul_haki'),
+							'file' => $file_haki,
+							
+
+							
+							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+							'deskripsi' => $this->input->post('deskripsi'),
+							'id_dosen' => $this->input->post('id_dosen'),
+							
+							
+							
+						);
+						
+						$where = array('id_haki' => $this->input->post('id_haki'));
+									
+						$data = $this->security->xss_clean($data);
+						$result = $this->haki_model->update($data, $where);
+
+						if($result){
+							$this->session->set_flashdata('msg', 'Data telah diUbah!');
+							redirect(base_url('admin/haki/edit/'.$this->input->post('id_haki')));
+						} 
+
+					} 
+
+				}
+			
+		}
+
+
+
+
 
 		public function tambah(){
 			if($this->input->post('submit')){

@@ -43,9 +43,6 @@
 			
 			}
 			
-			
-			
-			
 			else
 			{
 		
@@ -81,7 +78,21 @@
 
 	
 			}
+			
 		
+			public function edit_pengabdian($id_pengabdian)
+			{
+			return $this->db->query("select * from pengabdian 	where id_pengabdian='$id_pengabdian' ");
+
+			}
+			
+			
+			//edit pencil
+			public function update($data, $where)
+			{
+			return $this->db->update('pengabdian', $data, $where);
+			}	
+					
 		
 			public function dokumentasi_kegiatan($id_pengabdian)
 			{
