@@ -65,8 +65,8 @@
 						
 						
 						
-						$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
-						$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
+					//	$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
+					//	$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
 						
 										
 						
@@ -77,10 +77,8 @@
 							'judul_buku' => $this->input->post('judul_buku'),
 							'date' => date('Y-m-d'),		
 							'file' => $upload_path.'/'.$buku['file_name'],
-							
-
-							
-							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+														
+							//'tgl_pelaksanaan' => $tgl_pelaksanaan,
 							'deskripsi' => $this->input->post('deskripsi'),
 							'id_dosen' => $this->input->post('id_dosen'),
 							'id_pengupload' => $this->session->userdata('user_id'),

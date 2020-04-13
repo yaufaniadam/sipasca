@@ -90,15 +90,15 @@
                       <?php
 					if($row['hasil_penilaian']==1)
 					{
-					  echo "Layak";
+					  echo "Lengkap";
 					}
 					elseif($row['hasil_penilaian']==2)
 					{
-					echo "Tidak Layak";
+					echo "Belum lengkap";
 					}
 					else
 					{
-					echo "<font color=red><em>Tunggu Review</em></font>";
+					echo "<font color=red><em>Belum lengkap</em></font>";
 					}
 					?>
                      

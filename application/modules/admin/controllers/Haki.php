@@ -96,8 +96,8 @@
 						
 					}
 											
-						$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
-						$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
+					//	$tgl_pelaksanaan=explode("/", $this->input->post('tgl_pelaksanaan'));
+					//	$tgl_pelaksanaan=$tgl_pelaksanaan[2]."-".$tgl_pelaksanaan[0]."-".$tgl_pelaksanaan[1];
 						
 										
 						
@@ -110,7 +110,7 @@
 							
 
 							
-							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+						//	'tgl_pelaksanaan' => $tgl_pelaksanaan,
 							'deskripsi' => $this->input->post('deskripsi'),
 							'id_dosen' => $this->input->post('id_dosen'),
 							

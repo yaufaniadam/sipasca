@@ -118,7 +118,7 @@
               
               
 
-              <div class="form-group">
+            <!--  <div class="form-group">
                   <label>Tanggal Pelaksanaan</label>
 
                   <div class="input-group">
@@ -129,8 +129,8 @@
                     </div>
                     <input name="tgl_pelaksanaan" type="text" class="form-control float-right" id="tanggal">
                   </div>
-                  <!-- /.input group -->
-                </div>
+                  <!-- /.input group --
+                </div>-->
             
             </div>
             <!-- /.card-body -->
@@ -150,7 +150,7 @@
             </div>
             <div class="card-body">
               <div class="form-group">
-                <label for="inputEstimatedBudget">Unggah Proposal</label>
+                <label for="inputEstimatedBudget">Unggah Buku</label>
                 <input name="file_buku" type="file" id="inputEstimatedBudget" class="form-control" required>
               </div>             
              
