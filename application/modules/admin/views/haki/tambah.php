@@ -115,27 +115,36 @@
                 
    
               
+              <div class="form-group">
+                <label for="dosen">Kategori Haki</label>
+                <br />
+                
+          
+            
+               <?php
+						$kategori_haki= $this->db->query("select * from kategori_haki ");
+        			?>
+                  
+					<?php
+					foreach($kategori_haki->result_array() as $b)    
+					{
+					?>                            
+						<input name="id_kategori_haki" type="radio" value="<?=$b['id_kategori_haki'];?>" required="required" /> <?=$b['kategori_haki'];?><br />
+                        
+					<?php
+                    }
+                    ?>        
+                
+              </div>
               
               
 
-            <!--  <div class="form-group">
-                  <label>Tanggal Pelaksanaan</label>
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input name="tgl_pelaksanaan" type="text" class="form-control float-right" id="tanggal">
-                  </div>
-                  <!-- /.input group --
-                </div>-->
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
+					
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
 
         <div class="col-md-6">
           <div class="card card-secondary">

@@ -98,31 +98,12 @@
           <input name="id_haki" type="hidden" value="<?=$a['id_haki'];?>" />
         	
           
-          <input name="komentar_reviewer_hidden" type="hidden" value="<?=$a['komentar_reviewer'];?>" />
           
           
           <br />      
              
           <?php   
-   
-   if($this->session->userdata('is_admin')==3||$this->session->userdata('is_admin')==1)
-   {     
-    ?>         
-  
-   
-
-    <textarea name="komentar_reviewer" placeholder="Isi komentar..."><?=$a['komentar_reviewer'];?></textarea>
-    
-    <br />
-    
-    <br />
- <div class="text-right"><button type="submit" class="btn btn-success">Update</button></div> 
- 
- 
- 
- <?php
-  }
- else if($this->session->userdata('is_admin')==2) //staff
+   if($this->session->userdata('is_admin')==2) //staff
    {
 	
 	
@@ -132,27 +113,15 @@
   
   
   
-    <strong>Komentar</strong> <br />
-    <?php
-    if($a['komentar_reviewer']=="")
-	{
-	echo "<font color=red><em>Tidak Ada Komen</em></font>";
-	}
-	else
-	{
-	echo $a['komentar_reviewer'];
-	}
-	?>
-    
-    
-  <hr />
+   <strong>Kategori Haki</strong><br />
+	<?=$a['kategori_haki'];?>
+   
   
   
-  
-  
+  <!--
    <strong>Upload Kegiatan</strong><br />
  <a href="<?php echo base_url();?>admin/haki/tambah_kegiatan/<?=$a['id_haki'];?>"> Tambah Upload Kegiatan</a>
-    <hr />     
+    <hr /> -->    
         
  
   <?php
@@ -239,7 +208,7 @@
                     ?>
                     
                     
- 					<a href="<?php echo base_url();?>admin/haki/tambah_kegiatan/<?=$a['id_haki'];?>"> Edit Kegiatan</a>
+ 					<a href="<?php echo base_url();?>admin/haki/tambah_kegiatan/<?=$a['id_haki'];?>"> Edit Kegiatan/Tambah Kegiatan</a>
                     
                     
                   </div>

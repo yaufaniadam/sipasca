@@ -141,6 +141,47 @@
         </div>
 
         <div class="col-md-6">
+        
+        
+        
+	<div class="card card-secondary">
+				<div class="card-header">
+					<h3 class="card-title">Sumber Dana</h3>
+
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+							title="Collapse">
+							<i class="fas fa-minus"></i></button>
+					</div>
+				</div>
+                
+				<div class="card-body">
+
+					<div class="form-group">
+						<label for="sumber_dana">Sumber dana</label><br>
+            <input value="1" name="sumber_dana[]" type="checkbox" id="internal" data-toggle='collapse' data-target='.box_internal'> Internal &nbsp; &nbsp;
+            <input value="2" name="sumber_dana[]" type="checkbox" id="eksternal" data-toggle='collapse' data-target='.box_external'> Eksternal
+					</div>
+					<div class="collapse box_internal"  aria-expanded="false">
+						<label for="dana_internal">Nominal yang didanai oleh internal</label>
+            <input name="dana_internal" type="text" id="dana_internal" class="form-control" placeholder="Rp.">
+					</div>			
+
+          <div class="collapse box_external" aria-expanded="false">
+						<label for="dana_eksternal">Nominal yang didanai oleh eksternal</label>
+            <input name="dana_eksternal" type="text" id="dana_eksternal" class="form-control" placeholder="Rp.">
+          </div>
+          
+          <div class="collapse box_external" aria-expanded="false">
+						<label for="lembaga_eksternal">Nama lembaga eksternal yang mendanai</label>
+						<input name="lembaga_eksternal" type="text" id="lembaga_eksternal" class="form-control">
+					</div>
+
+				</div>
+			</div>        
+        
+        
+        
           <div class="card card-secondary">
             <div class="card-header">
               <h3 class="card-title">Dokumen</h3>

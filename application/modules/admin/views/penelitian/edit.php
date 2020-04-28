@@ -154,7 +154,86 @@
 			<!-- /.card -->
 		</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<div class="col-md-6">
+        
+        
+		<div class="card card-secondary">
+				<div class="card-header">
+					<h3 class="card-title">Sumber Dana</h3>
+
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+							title="Collapse">
+							<i class="fas fa-minus"></i></button>
+					</div>
+				</div>
+                
+              
+                
+          <?php
+		  
+		  if(isset($b['sumber_dana']))
+		  {
+		  
+          $sumber_dana=explode(",",$b['sumber_dana']);
+		  
+		  }
+		  
+		  ?>      
+                
+				<div class="card-body">
+
+					<div class="form-group">
+						<label for="sumber_dana">Sumber dana</label><br>
+            <input value="1" name="sumber_dana[]" type="checkbox" id="internal" data-toggle='collapse' data-target='.box_internal' 
+			<?php if(isset($sumber_dana[0])&&$sumber_dana[0]==1){ echo "checked";}?>> Internal &nbsp; &nbsp;
+            <input value="2" name="sumber_dana[]" type="checkbox" id="eksternal" data-toggle='collapse' data-target='.box_external' 
+			<?php if(isset($sumber_dana[1])&&$sumber_dana[1]==2){ echo "checked";}?>> Eksternal
+					</div>
+                    
+					
+						<label for="dana_internal">Nominal yang didanai oleh internal</label>
+            <input name="dana_internal" type="text" id="dana_internal" class="form-control" placeholder="Rp." value="<?=$b['dana_internal'];?>">
+								
+                    
+                    
+
+          
+						<label for="dana_eksternal">Nominal yang didanai oleh eksternal</label>
+            <input name="dana_eksternal" type="text" id="dana_eksternal" class="form-control" placeholder="Rp." value="<?=$b['dana_eksternal'];?>">
+         
+          
+          
+						<label for="lembaga_eksternal">Nama lembaga eksternal yang mendanai</label>
+						<input name="lembaga_eksternal" type="text" id="lembaga_eksternal" class="form-control" value="<?=$b['lembaga_eksternal'];?>">
+				
+
+				</div>
+			</div>        
+        
+        
+        
+        
+        
+        
 			<div class="card card-secondary">
 				<div class="card-header">
 					<h3 class="card-title">Dokumen</h3>
@@ -182,7 +261,7 @@
 		<div class="col-md-12 p-30">
 			<div class="form-group p-30">
 				<a href="#" class="btn btn-secondary">Batal</a>
-				<input type="submit" name="submit" value="Edit Penelitian" class="btn btn-success float-right">
+				<input type="submit" name="submit" value="Ubah Penelitian" class="btn btn-success float-right">
 			</div>
 		</div>
 		<?php echo form_close(); ?>

@@ -52,7 +52,7 @@
                <?php if($this->session->userdata('id_prodi')==0){?>   
                   <th class="text-center">Prodi</th>  
                <?php }  ?>                    
-                  <th class="text-center">Tanggal Pelaksanaan</th>
+                  <th class="text-center">Tanggal Upload</th>
                  
                   <th class="text-center">Aksi</th>
                 </tr>
@@ -65,7 +65,7 @@
                      <?php if($this->session->userdata('id_prodi')==0){?> 
                       <td class="text-center"><?=$row['prodi'];?></td>              
                      <?php }  ?>
-                      <td class="text-center"><?=$row['tgl_pelaksanaan'];?></td>
+                      <td class="text-center"><?=$row['date'];?></td>
                       
                       <td class="text-center">
                         <a class="btn btn-default btn-sm" href="<?=base_url('admin/haki/detail/'.$row['id_haki']); ?>">

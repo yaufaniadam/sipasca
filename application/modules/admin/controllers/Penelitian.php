@@ -45,14 +45,8 @@ class Penelitian extends Admin_Controller
 		$this->load->view('admin/layout', $data);
 	}
 
-
-
-
-
-
 	public function update()
 	{
-
 		if ($this->input->post('submit')) {
 
 			$this->form_validation->set_rules('judul_penelitian', 'Judul Penelitian', 'trim|required');
@@ -107,7 +101,12 @@ class Penelitian extends Admin_Controller
 					'lokasi' => $this->input->post('lokasi'),
 					'tgl_pelaksanaan' => $tgl_pelaksanaan,
 					'deskripsi' => $this->input->post('deskripsi'),
-					'id_dosen' => $this->input->post('id_dosen')
+					'id_dosen' => $this->input->post('id_dosen'),
+					
+					'sumber_dana' => implode(",",$this->input->post('sumber_dana')),
+					'dana_internal' => $this->input->post('dana_internal'),
+					'dana_eksternal' => $this->input->post('dana_eksternal'),
+					'lembaga_eksternal' => $this->input->post('lembaga_eksternal'),
 
 				);
 
@@ -183,10 +182,14 @@ class Penelitian extends Admin_Controller
 
 				$data = $this->security->xss_clean($data);
 				$result = $this->penelitian_model->tambah($data);
+				
+				$id_penelitian = $this->db->insert_id();		
+				
+				
 
 				if ($result) {
 					$this->session->set_flashdata('msg', 'Data telah ditambahkan!');
-					redirect(base_url('admin/penelitian/tambah'));
+					redirect(base_url('admin/penelitian/detail/'.$id_penelitian));
 				}
 			}
 		} else {
@@ -218,30 +221,30 @@ class Penelitian extends Admin_Controller
 
 
 		//Upload File Revisi		
-		$file_name_revisi = $_FILES['file_revisi']['name'];
-		$file_name_revisi = str_replace(" ", "_", $file_name_revisi);
+		$file_name_sk = $_FILES['file_sk']['name'];
+		$file_name_sk = str_replace(" ", "_", $file_name_sk);
 
-		$file_size = $_FILES['file_revisi']['size'];
-		$file_tmp = $_FILES['file_revisi']['tmp_name'];
-		$file_type = $_FILES['file_revisi']['type'];
+		$file_size = $_FILES['file_sk']['size'];
+		$file_tmp = $_FILES['file_sk']['tmp_name'];
+		$file_type = $_FILES['file_sk']['type'];
 
-		$file_ext_revisi = explode('.', $file_name_revisi);
-		$file_ext_revisi = end($file_ext_revisi);
-		$file_ext_revisi = strtolower($file_ext_revisi);
+		$file_ext_sk = explode('.', $file_name_sk);
+		$file_ext_sk = end($file_ext_sk);
+		$file_ext_sk = strtolower($file_ext_sk);
 
-		if (in_array($file_ext_revisi, $extensions) === false) {
+		if (in_array($file_ext_sk, $extensions) === false) {
 			echo "Maaf File Dokumen Saja Bisa Diupload.";
 		} else {
-			move_uploaded_file($file_tmp, $path . $file_name_revisi);
+			move_uploaded_file($file_tmp, $path . $file_name_sk);
 			echo "Success";
 
-			unlink($this->input->post('file_revisi_hidden'));
+			unlink($this->input->post('file_sk_hidden'));
 		}
 
-		if ($file_name_revisi == "") {
-			$file_revisi = $_POST['file_revisi_hidden'];
+		if ($file_name_sk == "") {
+			$file_sk = $_POST['file_sk_hidden'];
 		} else {
-			$file_revisi = $path . $file_name_revisi;
+			$file_sk = $path . $file_name_sk;
 		}
 		//Upload File Revisi		
 
@@ -287,37 +290,15 @@ class Penelitian extends Admin_Controller
 
 
 
-		if ($this->input->post('id_checklist_penilaian') == "") {
-			$id_checklist_penilaian = $this->input->post('id_checklist_penilaian_hidden');
-		} else {
-			$id_checklist_penilaian = implode(",", $this->input->post('id_checklist_penilaian'));
-		}
-
-
-		if ($this->input->post('hasil_penilaian') == "") {
-			$hasil_penilaian = $this->input->post('hasil_penilaian_hidden');
-		} else {
-			$hasil_penilaian = $this->input->post('hasil_penilaian');
-		}
-
-		if ($this->input->post('komentar_reviewer') == "") {
-			$komentar_reviewer = $this->input->post('komentar_reviewer_hidden');
-		} else {
-			$komentar_reviewer = $this->input->post('komentar_reviewer');
-		}
-
 
 
 
 
 		$input = array(
 			'status' => 2,
-			'file_revisi' => $file_revisi,
+			'file_sk' => $file_sk,
 			'file_akhir' => $file_akhir,
-			'id_checklist_penilaian' => $id_checklist_penilaian,
-			'hasil_penilaian' => $hasil_penilaian,
-
-			'komentar_reviewer' => $komentar_reviewer,
+			
 
 
 		);

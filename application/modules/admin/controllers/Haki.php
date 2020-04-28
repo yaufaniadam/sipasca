@@ -52,6 +52,12 @@
 
 				if($this->input->post('submit')){
 
+
+				//echo $_POST['id_kategori_haki'];
+
+				//exit();
+
+
 				$this->form_validation->set_rules('judul_haki', 'Judul Haki', 'trim|required');
 				$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 				
@@ -114,7 +120,7 @@
 							'deskripsi' => $this->input->post('deskripsi'),
 							'id_dosen' => $this->input->post('id_dosen'),
 							
-							
+							'id_kategori_haki' => $this->input->post('id_kategori_haki'),
 							
 						);
 						
@@ -187,21 +193,30 @@
 							
 
 							
-							'tgl_pelaksanaan' => $tgl_pelaksanaan,
+							
 							'deskripsi' => $this->input->post('deskripsi'),
 							'id_dosen' => $this->input->post('id_dosen'),
 							'id_pengupload' => $this->session->userdata('user_id'),
 							'id_prodi' => $this->session->userdata('id_prodi'),
 							
-							
+							'id_kategori_haki' => $this->input->post('id_kategori_haki'),
+
 						);
+						
+						
+						
 									
 						$data = $this->security->xss_clean($data);
 						$result = $this->haki_model->tambah($data);
+						
+						
+						$id_haki = $this->db->insert_id();		
+						
+						
 
 						if($result){
 							$this->session->set_flashdata('msg', 'Data telah ditambahkan!');
-							redirect(base_url('admin/haki/tambah'));
+							redirect(base_url('admin/haki/detail/'.$id_haki));
 						} 
 
 					} 

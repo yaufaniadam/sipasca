@@ -145,6 +145,7 @@
 							<i class="fas fa-minus"></i></button>
 					</div>
 				</div>
+                
 				<div class="card-body">
 
 					<div class="form-group">
@@ -169,6 +170,7 @@
 
 				</div>
 			</div>
+
 
 
 			<div class="card card-secondary">

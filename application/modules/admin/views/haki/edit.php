@@ -118,11 +118,38 @@
 			?>    
                 
    
+           
+  			<div class="form-group">
+                <label for="dosen">Kategori Haki</label>
+                <br />
+                
+          
+            
+               <?php
+						$kategori_haki= $this->db->query("select * from kategori_haki ");
+        			?>
+                  
+					<?php
+					foreach($kategori_haki->result_array() as $a)    
+					{
+						if($a['id_kategori_haki']==$b['id_kategori_haki']){$same="checked";}else{$same="";}
+					?>                            
+						<input name="id_kategori_haki" type="radio" value="<?=$a['id_kategori_haki'];?>" required="required" <?=$same;?> /> <?=$a['kategori_haki'];?><br />
+                        
+					<?php
+                    }
+                    ?>        
+                
+              </div>           
+           
+           
+           
+           
               
               
               
 
-              <div class="form-group">
+             <!-- <div class="form-group">
                   <label>Tanggal Pelaksanaan</label>
 
                   <div class="input-group">
@@ -130,17 +157,17 @@
                       <span class="input-group-text">
                         <i class="far fa-calendar-alt"></i>
                       </span>
-                    </div>
+                    </div>-->
                     
-					<?php
+			<!--		<?php
 					$tgl_pelaksanaan=explode("-",$b['tgl_pelaksanaan']);
 					$tgl_pelaksanaan=$tgl_pelaksanaan[1]."/".$tgl_pelaksanaan[0]."/".$tgl_pelaksanaan[2];
 					
 					?>                    
                     <input name="tgl_pelaksanaan" value="<?=$tgl_pelaksanaan;?>" type="text" class="form-control float-right" id="tanggal">
-                  </div>
+                  </div>-->
                   <!-- /.input group -->
-                </div>
+               <!-- </div>-->
             
             </div>
             <!-- /.card-body -->

@@ -210,26 +210,15 @@ foreach ($detail_publikasi->result_array() as $a) {
 
 						<input type="radio" name="hasil_penilaian" id="radio" value="2" <?php if ($a['hasil_penilaian'] == 2) {
                                                                                     echo "checked";
-                                                                                  } ?> required="required" /> Tidak
-						Diterima
+                                                                                  } ?> required="required" /> Revisi
 
-						<br /> <br />
-
-						<strong>Tanggal diterima/ditolak</strong>
-
-						<input name="tgl_hasil_penilaian" type="text" id="tanggal" value="<?= $a['tgl_hasil_penilaian']; ?>">
-
-						<br />
+						
 						<hr />
 
 						<?php
                   if ($a['hasil_penilaian'] == 1) {
                   ?>
-						<strong>Upload Kegiatan</strong><br />
-						<a href="<?php echo base_url(); ?>admin/publikasi/tambah_kegiatan/<?= $a['id_publikasi']; ?>"> Tambah
-							Upload
-							Kegiatan</a>
-						<hr />
+						
 						<strong>Link Publikasi </strong><br />
 						<?php
                     if ($dokumentasi_kegiatan->num_rows() == 0) {

@@ -92,130 +92,44 @@ foreach ($detail_penelitian->result_array() as $a) {
           <!-- /.card -->
 
           <div class="card card-olive card-outline">
-            <div class="card-header pl-3 pt-2 pb-2">
-              Penilaian Reviewer
-            </div>
+           
             <div class="card-body" style="padding-top:0;">
               <?php echo form_open_multipart(base_url('admin/penelitian/update_penelitian'), '') ?>
               <input name="id_penelitian" type="hidden" value="<?= $a['id_penelitian']; ?>" />
-              <input name="file_revisi_hidden" type="hidden" value="<?= $a['file_revisi']; ?>" />
+              <input name="file_sk_hidden" type="hidden" value="<?= $a['file_sk']; ?>" />
               <input name="file_akhir_hidden" type="hidden" value="<?= $a['file_akhir']; ?>" />
               <input name="id_checklist_penilaian_hidden" type="hidden" value="<?= $a['id_checklist_penilaian']; ?>" />
-              <input name="hasil_penilaian_hidden" type="hidden" value="<?= $a['hasil_penilaian']; ?>" />
-              <input name="komentar_reviewer_hidden" type="hidden" value="<?= $a['komentar_reviewer']; ?>" />
+            
               <br />
 
-              <?php
-              if ($this->session->userdata('is_admin') == 3 || $this->session->userdata('is_admin') == 1) {
-                $checklist_penilaian = $this->db->query("select * from checklist_penilaian  ");
-              ?>
-                <strong>Kelengkapan Dokumen</strong><br />
-                <?php
-                $kks2 = explode(",", $a['id_checklist_penilaian']);
-                foreach ($checklist_penilaian->result_array() as $b) {
-                  if (in_array($b['id_checklist_penilaian'], $kks2)) {
-                    $select = "checked";
-                  } else {
-                    $select = "";
-                  }
-                ?>
-                  <input type="checkbox" name="id_checklist_penilaian[]" id="checkbox" value="<?= $b['id_checklist_penilaian']; ?>" <?= $select; ?> /> <?= $b['checklist_penilaian']; ?> <br />
-                <?php
-                }
-                ?>
-                <hr />
 
-                <textarea name="komentar_reviewer" placeholder="Isi komentar..."><?= $a['komentar_reviewer']; ?></textarea>
 
-                <strong>Penilaian</strong>
-                <?php if ($a['hasil_penilaian'] == 0) {
-                  echo "(Belum Dinilai)";
-                } ?> <br />
-                <input type="radio" name="hasil_penilaian" id="radio" value="1" <?php if ($a['hasil_penilaian'] == 1) {
-                                                                                  echo "checked";
-                                                                                } ?> required="required" />
-                Layak<br />
 
-                <input type="radio" name="hasil_penilaian" id="radio" value="2" <?php if ($a['hasil_penilaian'] == 2) {
-                                                                                  echo "checked";
-                                                                                } ?> required="required" /> Tidak
-                Layak
-
-                <div class="text-right"><button type="submit" class="btn btn-success">Update</button></div>
 
               <?php
-              } else if ($this->session->userdata('is_admin') == 2) //staff
+            if ($this->session->userdata('is_admin') == 2) //staff
               {
-                $checklist_penilaian_view = $this->db->query("select * from checklist_penilaian where id_checklist_penilaian in (" . $a['id_checklist_penilaian'] . ")  ");
+              
               ?>
-                <strong>Kelengkapan Dokumen</strong><br />
-                <?php
-                if ($checklist_penilaian_view->num_rows() == 0) {
-                  echo "<font color=red><em>Belum Ada</em></font>";
-                } else {
-                  foreach ($checklist_penilaian_view->result_array() as $c) {
-                    echo $c['checklist_penilaian'] . "<br />";
-                  }
-                } //end 	if($checklist_penilaian_view->num_rows()==0)
-
-                ?>
-                <hr />
-                <strong>Komentar</strong> <br />
-                <?php
-                if ($a['komentar_reviewer'] == "") {
-                  echo "<font color=red><em>Tidak Ada Komentar</em></font>";
-                } else {
-                  echo $a['komentar_reviewer'];
-                }
-                ?>
-                <hr />
-                <strong>Penilaian</strong> <?php
-                                            if ($a['hasil_penilaian'] == 1) {
-                                              echo "Layak";
-                                            } elseif ($a['hasil_penilaian'] == 2) {
-                                              echo "Tidak Layak";
-                                            } else {
-                                              echo "<font color=red><em>Tunggu Review</em></font>";
-                                            }
-                                            ?>
-
-
-                <hr />
-                <?php
-                if ($a['hasil_penilaian'] == 1) {
-                ?>
-                  <strong>Upload Kegiatan</strong><br />
-                  <a href="<?php echo base_url(); ?>admin/penelitian/tambah_kegiatan/<?= $a['id_penelitian']; ?>"> Tambah
-                    Upload Kegiatan</a>
+                
+               <strong>Upload File SK </strong><br />
+                  <input name="file_sk" type="file">  
+                 
+                 
+                  
+				  
                   <hr />
-                  <strong>Upload Laporan Akhir </strong><br />
-                  <?php
-                  if ($dokumentasi_kegiatan->num_rows() == 0) {
-                    echo "<font color=red><em>Upload Kegiatan Dahulu</em></font>";
-                  } else {
-                  ?>
-                    <input name="file_akhir" type="file">
-                  <?php
-                  }
-                  ?>
-                  <hr />
-                <?php
-                } elseif ($a['hasil_penilaian'] == 2) {
-                ?>
-                  <strong>Upload Revisi Penelitian </strong><br />
-                  <input name="file_revisi" type="file">
-                <?php
-                }
-                ?>
+                <strong>Upload Laporan Akhir </strong><br />
+ 				                      <input name="file_akhir" type="file">
+           
+               
 
                 <hr />
-                <?php
-                if (!$a['hasil_penilaian'] == 0) {
-                ?>
-                  <div class="text-right"><button type="submit" class="btn btn-success">Update</button></div>
-                <?php
-                }
-                ?>
+               
+                
+                                  <div class="text-right"><button type="submit" class="btn btn-success">Update</button></div>
+
+                
               <?php
               } else if ($this->session->userdata('is_admin') == 4) //Dosen
               {
@@ -224,6 +138,9 @@ foreach ($detail_penelitian->result_array() as $a) {
               <?php
               }
               ?>
+
+
+              
               </form>
             </div>
           </div>
@@ -267,21 +184,21 @@ foreach ($detail_penelitian->result_array() as $a) {
                       echo "<font color=red>Belum Ada</font>";
                     } else {
                     ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Unduh</a>
+                      <a href="<?php echo base_url(); ?><?= $a['file']; ?>" class="btn btn-warning btn-sm"  target="_blank"><i class="fa fa-download"></i> Unduh</a>
                     <?php
                     }
                     ?>
                   </td>
                 </tr>
                 <tr>
-                  <td>Proposal Revisi</td>
+                  <td>Proposal Sk</td>
                   <td>
                     <?php
-                    if ($a['file_revisi'] == "") {
+                    if ($a['file_sk'] == "") {
                       echo "<font color=red>Belum Ada</font>";
                     } else {
                     ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file_revisi']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Unduh</a>
+                      <a href="<?php echo base_url(); ?><?= $a['file_sk']; ?>" class="btn btn-warning btn-sm" target="_blank" ><i class="fa fa-download"></i> Unduh</a>
                     <?php
                     }
                     ?>
@@ -295,7 +212,7 @@ foreach ($detail_penelitian->result_array() as $a) {
                       echo "<font color=red>Belum Ada</font>";
                     } else {
                     ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file_akhir']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Unduh</a>
+                      <a href="<?php echo base_url(); ?><?= $a['file_akhir']; ?>" class="btn btn-warning btn-sm"  target="_blank"><i class="fa fa-download"></i> Unduh</a>
                     <?php
                     }
                     ?>
@@ -311,11 +228,11 @@ foreach ($detail_penelitian->result_array() as $a) {
               Dokumentasi Kegiatan
               <?php 
               if($this->session->userdata['is_admin'] == 2) {
-              if ($a['hasil_penilaian'] == 1) {
+              
               ?>
                 <a class="btn btn-warning btn-sm float-right" href="<?php echo base_url(); ?>admin/penelitian/tambah_kegiatan/<?= $a['id_penelitian']; ?>"> <i class="fas fa-image"></i> Tambah/Edit Dokumentasi</a>
               <?php
-              } //if($a['hasil_penilaian']==1)
+           
             } // endif is admin
               ?>
             </div><!-- /.card-header -->

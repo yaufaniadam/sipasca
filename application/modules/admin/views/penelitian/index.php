@@ -70,6 +70,7 @@
 					  <?php
 					  if($row['file_akhir']=="")
 					  {
+						  
 					  if($row['status']==0)
 					  {
 						  echo '<a href="" class="btn btn-default btn-xs" >Baru</a>';
@@ -78,6 +79,7 @@
 					  {
 						  echo '<a href="" class="btn btn-warning btn-xs" >Proses</a>';
 					  }
+					  
 					  }
 					  else
 					  {
@@ -85,22 +87,7 @@
 					  }
 					  ?>
                       
-                     <br /><br />
                      
-                      <?php
-					if($row['hasil_penilaian']==1)
-					{
-					  echo "Lengkap";
-					}
-					elseif($row['hasil_penilaian']==2)
-					{
-					echo "Belum lengkap";
-					}
-					else
-					{
-					echo "<font color=red><em>Belum lengkap</em></font>";
-					}
-					?>
                      
                       
                       </td>

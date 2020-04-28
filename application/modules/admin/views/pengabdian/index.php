@@ -86,22 +86,7 @@
 					  }
 					  ?>
                       
-                     <br /><br />
-                     
-                      <?php
-					if($row['hasil_penilaian']==1)
-					{
-					  echo "Layak";
-					}
-					elseif($row['hasil_penilaian']==2)
-					{
-					echo "Tidak Layak";
-					}
-					else
-					{
-					echo "<font color=red><em>Tunggu Penilaian</em></font>";
-					}
-					?>
+                   
                      
                       
                       </td>

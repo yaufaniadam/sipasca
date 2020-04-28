@@ -69,13 +69,20 @@
 		
 			public function detail_haki($id_haki)
 			{
-			return $this->db->query("select a.*,b.prodi, c.firstname as nama_dosen , c.photo, d.firstname as nama_pengupload from haki a
+			return $this->db->query("select a.*,b.prodi, c.firstname as nama_dosen , c.photo, d.firstname as nama_pengupload, e.kategori_haki 
+			
+			
+			from haki a
 		
 			left join prodi b on a.id_prodi=b.id_prodi
 		
 			left join ci_users c on a.id_dosen=c.id
 		
 			left join ci_users d on a.id_pengupload=d.id
+			
+			left join kategori_haki e on a.id_kategori_haki=e.id_kategori_haki
+			
+			
 
 		  	where a.id_haki='$id_haki' ");
 
