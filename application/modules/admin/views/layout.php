@@ -32,16 +32,6 @@
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script src="<?= base_url() ?>public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   
-  
-  
-  
-  
-  
-  
- 
-  
-
-
 <?php
 function indonesian_date ($timestamp = '', $date_format = 'j F Y', $suffix = 'WIB') {
 	if (trim ($timestamp) == '')
