@@ -41,27 +41,27 @@
                   <div class="form-group">
                     <label for="username" class="control-label">Username</label>
                     <div class="">
-                      <input type="text" name="username" class="form-control" id="username" placeholder="">
+                      <input type="text" name="username" class="form-control" id="username" value="<?= set_value('username'); ?>">
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="firstname" class="control-label">Nama Lengkap</label>
                     <div>
-                      <input type="text" name="firstname" class="form-control" id="firstname" placeholder="">
+                      <input type="text" name="firstname" class="form-control" id="firstname" value="<?= set_value('firstname'); ?>">
                     </div>
                   </div>
                 
                   <div class="form-group">
                     <label for="email" class="control-label">Email</label>
                     <div>
-                      <input type="email" name="email" class="form-control" id="email" placeholder="">
+                      <input type="email" name="email" class="form-control" id="email" value="<?= set_value('email'); ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="mobile_no" class="control-label">Telepon</label>
                     <div>
-                      <input type="number" name="mobile_no" class="form-control" id="mobile_no" placeholder="">
+                      <input type="number" name="mobile_no" class="form-control" id="mobile_no" value="<?= set_value('mobile_no'); ?>">
                     </div>
                   </div>
                  
@@ -75,7 +75,7 @@
                   <div class="form-group">
                     <label for="password" class="control-label">Password</label>
                     <div>
-                      <input type="password" name="password" class="form-control" id="password" placeholder="">
+                      <input type="password" name="password" class="form-control" value="<?= set_value('password'); ?>">
                     </div>
                   </div>               
                              
@@ -84,11 +84,11 @@
                     <label for="is_admin" class="control-label">Pilih Jabatan</label>
                     <div>
                       <select name="is_admin" class="form-control">
-                        <option value="">Pilih Jabatan</option>
-                        <option value="1">Administrator</option>
-                        <option value="2">TU Prodi</option>
-                        <option value="3">Reviewer</option>
-                        <option value="4">Dosen</option>
+                        <option value="" <?php echo  set_select('is_admin', '', TRUE); ?>>Pilih Jabatan</option>
+                        <option value="1" <?php echo  set_select('is_admin', '1', TRUE); ?>>Administrator</option>
+                        <option value="2" <?php echo  set_select('is_admin', '2', TRUE); ?>>TU Prodi</option>
+                        <option value="3" <?php echo  set_select('is_admin', '3', TRUE); ?>>Reviewer</option>
+                        <option value="4" <?php echo  set_select('is_admin', '4', TRUE); ?>>Dosen</option>
                       </select>
                     </div>
                   </div>
@@ -99,7 +99,7 @@
                       <select name="id_prodi" class="form-control">
                         <option value="">Pilih program Studi</option>
                         <?php foreach($prodi as $prodi): ?>
-                          <option value="<?= $prodi['id_prodi']; ?>"><?= $prodi['prodi'];  ?></option>
+                          <option value="<?= $prodi['id_prodi']; ?>" <?php echo  set_select('id_prodi', $prodi['id_prodi'] , TRUE); ?>><?= $prodi['prodi'];  ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>

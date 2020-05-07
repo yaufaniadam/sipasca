@@ -81,6 +81,37 @@
 			return $this->db->query("select * from pengabdian  where id_prodi='".$this->session->userdata('id_prodi')."'");
 			}
 		}
+		public function jumlah_buku(){
+			
+			if($this->session->userdata('id_prodi')==0)
+			{	
+			return $this->db->query("select * from buku");
+			}
+			elseif($this->session->userdata('is_admin')==4)
+			{	
+			return $this->db->query("select * from buku where id_dosen='".$this->session->userdata('user_id')."'");
+			}
+			else
+			{
+			return $this->db->query("select * from buku  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			}
+		}
+
+		public function jumlah_haki(){
+			
+			if($this->session->userdata('id_prodi')==0)
+			{	
+			return $this->db->query("select * from haki");
+			}
+			elseif($this->session->userdata('is_admin')==4)
+			{	
+			return $this->db->query("select * from haki where id_dosen='".$this->session->userdata('user_id')."'");
+			}
+			else
+			{
+			return $this->db->query("select * from haki  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			}
+		}
 		
 		
 		

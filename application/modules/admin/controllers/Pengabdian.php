@@ -417,7 +417,58 @@ public function update_pengabdian()
 			$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
 			redirect(base_url('admin/pengabdian/index'));
 		}
+		public function tambah_dokumen($kat = 0, $id_pengabdian = 0)
+	{
 
+		$data['id_pengabdian'] = $id_pengabdian;
+		$data['kat'] = $kat;
+		$data['dokumentasi_kegiatan'] = $this->pengabdian_model->dokumentasi_kegiatan($id_pengabdian);
+
+		$data['view'] = 'pengabdian/tambah_dokumen';
+		$this->load->view('admin/layout', $data);
+	}
+
+
+	public function tambah_dokumen_proses()
+	{
+		if ($this->input->post('submit')) {
+
+
+			$upload_path = './uploads/dokumen/pengabdian';
+
+			if (!is_dir($upload_path)) {
+				mkdir($upload_path, 0777, TRUE);
+			}
+			//$newName = "hrd-".date('Ymd-His');
+			$config = array(
+				'upload_path' => $upload_path,
+				'allowed_types' => "jpg|jpeg|png|pdf",
+				'overwrite' => FALSE,
+			);
+
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('file');
+			$pengabdian = $this->upload->data();
+			$file = $upload_path . '/' . $pengabdian['file_name'];
+			$kat =  $this->input->post('kat');
+
+			$this->db->where('id_pengabdian', $this->input->post('id_pengabdian'));			
+		 	$result = $this->db->update('pengabdian', array( $kat => $file));
+		
+			 if ($result) {
+				$this->session->set_flashdata('msg', 'Data telah ditambahkan!');
+				redirect(base_url('admin/pengabdian/detail/' . $this->input->post('id_pengabdian')));
+			}
+
+		}
+	}
+
+	public function hapus_dokumen($id)
+	{
+		$this->db->delete('dokumentasi_kegiatan', array('id_dokumentasi' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
+		redirect(base_url('admin/pengabdian/tambah_kegiatan/' . $id));
+	}
 
 	} //class
 

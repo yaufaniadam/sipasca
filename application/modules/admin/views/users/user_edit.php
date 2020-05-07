@@ -123,7 +123,7 @@
                       <select name="id_prodi" class="form-control">
                         <option value="">Pilih program Studi</option>
                         <?php foreach($prodi as $prodi): ?>
-                          <option value="<?= $prodi['id_prodi']; ?>"><?= $prodi['prodi'];  ?></option>
+                          <option value="<?= $prodi['id_prodi']; ?>" <?=($user['id_prodi']==$prodi['id_prodi']) ? "selected" : ""; ?>><?= $prodi['prodi'];  ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>

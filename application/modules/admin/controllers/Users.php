@@ -40,6 +40,7 @@ class Users extends Mimin_Controller
 			$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 			if ($this->form_validation->run() == FALSE) {
+				$data['prodi'] = $this->prodi_model->get_all_prodi();
 				$data['view'] = 'admin/users/user_add';
 				$this->load->view('layout', $data);
 			} else {
@@ -143,6 +144,7 @@ class Users extends Mimin_Controller
 				echo $this->input->post('foto_profil_hidden');
 			}
 		} else {
+			$data['prodi'] = $this->prodi_model->get_all_prodi();
 			$data['user'] = $this->user_model->get_user_by_id($id);
 			$data['view'] = 'admin/users/user_edit';
 			$this->load->view('layout', $data);

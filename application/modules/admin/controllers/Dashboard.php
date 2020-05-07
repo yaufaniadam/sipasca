@@ -13,6 +13,8 @@
 			$data['jumlah_penelitian'] = $this->dashboard_model->jumlah_penelitian();
 			$data['jumlah_publikasi'] = $this->dashboard_model->jumlah_publikasi();
 			$data['jumlah_pengabdian'] = $this->dashboard_model->jumlah_pengabdian();
+			$data['jumlah_buku'] = $this->dashboard_model->jumlah_buku();
+			$data['jumlah_haki'] = $this->dashboard_model->jumlah_haki();
 			
 			$data['title'] = 'Dashboard Admin';
 			$data['view'] = 'admin/dashboard/index';

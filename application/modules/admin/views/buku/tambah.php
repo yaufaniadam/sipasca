@@ -152,7 +152,26 @@
               <div class="form-group">
                 <label for="inputEstimatedBudget">Unggah Buku</label>
                 <input name="file_buku" type="file" id="inputEstimatedBudget" class="form-control" required>
-              </div>             
+              </div>  
+              
+              <div class="form-group">
+                <label for="dosen">Kategori Buku</label>
+                <br />
+                <?php
+                $kategori_buku = $this->db->query("select * from kategori_buku ");
+                ?>
+
+                <?php
+                foreach ($kategori_buku->result_array() as $a) {
+                ?>
+                  <input name="id_kategori_buku" type="radio" value="<?= $a['id_kategori_buku']; ?>" required="required"  />
+                  <?= $a['kategori_buku']; ?><br />
+
+                <?php
+                }
+                ?>
+
+            </div>
              
             </div>
             <!-- /.card-body -->

@@ -19,24 +19,21 @@
 <!-- Main content -->
 
 <section class="content">
-
-
-
 	<?php if (isset($msg) || validation_errors() !== '') : ?>
-	<div class="alert alert-warning alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h4><i class="icon fas fa-exclamation-triangle"></i> Alert!</h4>
-		<?= validation_errors(); ?>
-		<?= isset($msg) ? $msg : ''; ?>
-	</div>
+		<div class="alert alert-warning alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4><i class="icon fas fa-exclamation-triangle"></i> Alert!</h4>
+			<?= validation_errors(); ?>
+			<?= isset($msg) ? $msg : ''; ?>
+		</div>
 	<?php endif; ?>
 
 	<?php if ($this->session->flashdata('msg') != '') : ?>
-	<div class="alert alert-success flash-msg alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h4>Success!</h4>
-		<?= $this->session->flashdata('msg'); ?>
-	</div>
+		<div class="alert alert-success flash-msg alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<h4>Success!</h4>
+			<?= $this->session->flashdata('msg'); ?>
+		</div>
 	<?php endif; ?>
 
 
@@ -48,8 +45,7 @@
 				<div class="card-header">
 					<h3 class="card-title">Informasi Umum</h3>
 					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-							title="Collapse">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 							<i class="fas fa-minus"></i></button>
 					</div>
 				</div>
@@ -58,16 +54,15 @@
 					<div class="form-group">
 						<label for="judul">Judul Penelitian</label>
 						<input name="judul_penelitian" value="<?php if (validation_errors()) {
-                                                    echo set_value('judul_penelitian');
-                                                  } ?>" type="text" id="judul" class="form-control"
-							required="required">
+																	echo set_value('judul_penelitian');
+																} ?>" type="text" id="judul" class="form-control" required="required">
 					</div>
 
 					<div class="form-group">
 						<label for="deskripsi">Deskripsi Singkat</label>
 						<textarea name="deskripsi" id="deskripsi" class="form-control" rows="4"><?php if (validation_errors()) {
-                                                                                      echo set_value('deskripsi');
-                                                                                    } ?></textarea>
+																									echo set_value('deskripsi');
+																								} ?></textarea>
 					</div>
 
 					<div class="form-group">
@@ -78,39 +73,39 @@
 
 
 					<?php
-          if ($this->session->userdata('is_admin') == 4) {
-          ?>
+					if ($this->session->userdata('is_admin') == 4) {
+					?>
 
-					<input name="id_dosen" type="hidden" value="<?= $this->session->userdata('user_id'); ?>" />
-
-					<?php
-          } else {
-          ?>
-
-
-
-					<div class="form-group">
-						<label for="dosen">Dosen yang mengajukan</label>
-
-						<select name="id_dosen" class="form-control" required>
-							<option value="">Pilih...</option>
-
-							<?php
-                foreach ($dosen->result_array() as $a) {
-                ?>
-							<option value="<?= $a['id']; ?>"><?= $a['firstname']; ?></option>
-
-							<?php
-                }
-                ?>
-
-						</select>
-
-					</div>
+						<input name="id_dosen" type="hidden" value="<?= $this->session->userdata('user_id'); ?>" />
 
 					<?php
-          }
-          ?>
+					} else {
+					?>
+
+
+
+						<div class="form-group">
+							<label for="dosen">Dosen yang mengajukan</label>
+
+							<select name="id_dosen" class="form-control" required>
+								<option value="">Pilih...</option>
+
+								<?php
+								foreach ($dosen->result_array() as $a) {
+								?>
+									<option value="<?= $a['id']; ?>"><?= $a['firstname']; ?></option>
+
+								<?php
+								}
+								?>
+
+							</select>
+
+						</div>
+
+					<?php
+					}
+					?>
 
 
 					<div class="form-group">
@@ -122,8 +117,7 @@
 									<i class="far fa-calendar-alt"></i>
 								</span>
 							</div>
-							<input name="tgl_pelaksanaan" type="text" class="form-control float-right" id="tanggal"
-								required="required">
+							<input name="tgl_pelaksanaan" type="text" class="form-control float-right" id="tanggal" required="required">
 						</div>
 						<!-- /.input group -->
 					</div>
@@ -140,30 +134,29 @@
 					<h3 class="card-title">Sumber Dana</h3>
 
 					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-							title="Collapse">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 							<i class="fas fa-minus"></i></button>
 					</div>
 				</div>
-                
+
 				<div class="card-body">
 
 					<div class="form-group">
 						<label for="sumber_dana">Sumber dana</label><br>
-            <input value="1" name="sumber_dana[]" type="checkbox" id="internal" data-toggle='collapse' data-target='.box_internal'> Internal &nbsp; &nbsp;
-            <input value="2" name="sumber_dana[]" type="checkbox" id="eksternal" data-toggle='collapse' data-target='.box_external'> Eksternal
+						<input value="1" name="sumber_dana[]" type="checkbox" id="internal" data-toggle='collapse' data-target='.box_internal'> Internal &nbsp; &nbsp;
+						<input value="2" name="sumber_dana[]" type="checkbox" id="eksternal" data-toggle='collapse' data-target='.box_external'> Eksternal
 					</div>
-					<div class="collapse box_internal"  aria-expanded="false">
+					<div class="collapse box_internal" aria-expanded="false">
 						<label for="dana_internal">Nominal yang didanai oleh internal</label>
-            <input name="dana_internal" type="text" id="dana_internal" class="form-control" placeholder="Rp.">
-					</div>			
+						<input name="dana_internal" type="text" id="dana_internal" class="form-control" placeholder="Rp.">
+					</div>
 
-          <div class="collapse box_external" aria-expanded="false">
+					<div class="collapse box_external" aria-expanded="false">
 						<label for="dana_eksternal">Nominal yang didanai oleh eksternal</label>
-            <input name="dana_eksternal" type="text" id="dana_eksternal" class="form-control" placeholder="Rp.">
-          </div>
-          
-          <div class="collapse box_external" aria-expanded="false">
+						<input name="dana_eksternal" type="text" id="dana_eksternal" class="form-control" placeholder="Rp.">
+					</div>
+
+					<div class="collapse box_external" aria-expanded="false">
 						<label for="lembaga_eksternal">Nama lembaga eksternal yang mendanai</label>
 						<input name="lembaga_eksternal" type="text" id="lembaga_eksternal" class="form-control">
 					</div>
@@ -177,8 +170,7 @@
 				<div class="card-header">
 					<h3 class="card-title">Dokumen</h3>
 					<div class="card-tools">
-						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-							title="Collapse">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 							<i class="fas fa-minus"></i></button>
 					</div>
 				</div>
@@ -187,7 +179,7 @@
 						<label for="inputEstimatedBudget">Unggah Proposal</label>
 						<input name="file_penelitian" type="file" id="inputEstimatedBudget" class="form-control" required>
 					</div>
-				
+
 				</div>
 				<!-- /.card-body -->
 			</div>
@@ -212,7 +204,7 @@
 <script src="<?= base_url(); ?>public/plugins/daterangepicker/daterangepicker.js"></script>
 
 <script>
-	$(function () {
+	$(function() {
 		$('#tanggal').daterangepicker({
 			singleDatePicker: true,
 			showDropdowns: true,
@@ -223,6 +215,4 @@
 
 	$("#penelitian").addClass('menu-open');
 	$("#penelitian .tambahbaru a.nav-link").addClass('active');
-
-
 </script>

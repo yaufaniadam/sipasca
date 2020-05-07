@@ -7,7 +7,7 @@
           <div class="col-sm-6">
             
             
-   <h1>Haki  <?php
+   <h1>Hak Kekayaan Intelektual (HAKI) <?php
 	  if($this->session->userdata('is_admin')==2)
 			{ 
 		?>   <a href="<?= base_url('admin/haki/tambah') ?>" class="btn btn-sm btn-default">Tambah baru</a>
@@ -20,7 +20,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Haki</li>
+              <li class="breadcrumb-item active">HAKI</li>
             </ol>
           </div>
         </div>
@@ -47,7 +47,7 @@
               <table id="tb_haki" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th style="width:40%">Judul Haki</th>
+                  <th style="width:40%">Judul</th>
                   <th class="text-center">Dosen</th>
                <?php if($this->session->userdata('id_prodi')==0){?>   
                   <th class="text-center">Prodi</th>  
@@ -60,21 +60,20 @@
                 <tbody>
                   <?php foreach($haki as $row ) { ?>
                     <tr>
-                      <td><?=$row['judul_haki'];?></td>
+                      <td> <a href="<?=base_url('admin/haki/detail/'.$row['id_haki']); ?>"><?=$row['judul_haki'];?></a></td>
                       <td class="text-center"><?=$row['firstname'];?></td>
                      <?php if($this->session->userdata('id_prodi')==0){?> 
                       <td class="text-center"><?=$row['prodi'];?></td>              
                      <?php }  ?>
                       <td class="text-center"><?=$row['date'];?></td>
                       
+                   
                       <td class="text-center">
-                        <a class="btn btn-default btn-sm" href="<?=base_url('admin/haki/detail/'.$row['id_haki']); ?>">
-                          <i class="fa fa-eye" style="color:green;"></i>
-                        </a>
+                      <?php  if ($this->session->userdata['is_admin'] == 2) { ?>
                         <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/haki/hapus/'.$row['id_haki']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                        <?php } ?>
                         
-                        
-   						<a class="btn btn-default btn-sm" href="<?=base_url('admin/haki/edit/'.$row['id_haki']); ?>">
+   					        	<a class="btn btn-default btn-sm" href="<?=base_url('admin/haki/edit/'.$row['id_haki']); ?>">
                           <i class="fas fa-pencil-alt" style="color:green;"></i>
                         </a>                        
                         

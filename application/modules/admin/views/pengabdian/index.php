@@ -61,7 +61,8 @@
                 <tbody>
                   <?php foreach($pengabdian as $row ) { ?>
                     <tr>
-                      <td><?=$row['judul_pengabdian'];?></td>
+                      <td><a href="<?=base_url('admin/pengabdian/detail/'.$row['id_pengabdian']); ?>">
+                         <?=$row['judul_pengabdian'];?></a></td>
                       <td class="text-center"><?=$row['firstname'];?></td>
                      <?php if($this->session->userdata('id_prodi')==0){?> 
                       <td class="text-center"><?=$row['prodi'];?></td>              
@@ -91,13 +92,11 @@
                       
                       </td>
                       <td class="text-center">
-                        <a class="btn btn-default btn-sm" href="<?=base_url('admin/pengabdian/detail/'.$row['id_pengabdian']); ?>">
-                          <i class="fa fa-eye" style="color:green;"></i>
-                        </a>
-                        <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/pengabdian/hapus/'.$row['id_pengabdian']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                        <?php  if ($this->session->userdata['is_admin'] == 2) { ?>
+                          <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/pengabdian/hapus/'.$row['id_pengabdian']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                        <?php } ?>
                         
-                        
-						<a class="btn btn-default btn-sm" href="<?=base_url('admin/pengabdian/edit/'.$row['id_pengabdian']); ?>">
+					              	<a class="btn btn-default btn-sm" href="<?=base_url('admin/pengabdian/edit/'.$row['id_pengabdian']); ?>">
                           <i class="fas fa-pencil-alt" style="color:green;"></i>
                         </a>                           
                       </td>

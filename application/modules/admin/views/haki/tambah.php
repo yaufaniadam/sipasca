@@ -158,7 +158,7 @@
             </div>
             <div class="card-body">
               <div class="form-group">
-                <label for="inputEstimatedBudget">Unggah SK HAKI</label>
+                <label for="inputEstimatedBudget">Unggah Sertifikat HAKI/Paten</label>
                 <input name="file_haki" type="file" id="inputEstimatedBudget" class="form-control" required>
               </div>             
              

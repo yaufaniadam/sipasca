@@ -60,43 +60,40 @@
                 <tbody>
                   <?php foreach($penelitian as $row ) { ?>
                     <tr>
-                      <td><?=$row['judul_penelitian'];?></td>
+                      <td><a  href="<?=base_url('admin/penelitian/detail/'.$row['id_penelitian']); ?>"><?=$row['judul_penelitian'];?></a></td>
                       <td class="text-center"><?=$row['firstname'];?></td>
                      <?php if($this->session->userdata('id_prodi')==0){?> 
                       <td class="text-center"><?=$row['prodi'];?></td>              
                      <?php }  ?>
                       <td class="text-center"><?=$row['tgl_pelaksanaan'];?></td>
                       <td class="text-center">
-					  <?php
-					  if($row['file_akhir']=="")
-					  {
-						  
-					  if($row['status']==0)
-					  {
-						  echo '<a href="" class="btn btn-default btn-xs" >Baru</a>';
-					  }
-					  else
-					  {
-						  echo '<a href="" class="btn btn-warning btn-xs" >Proses</a>';
-					  }
-					  
-					  }
-					  else
-					  {
-						  echo '<a href="" class="btn btn-success btn-xs" >Selesai</a>';
-					  }
-					  ?>
-                      
-                     
-                     
+                        <?php
+                        if($row['file_akhir']=="")
+                        {
+                          
+                        if($row['status']==0)
+                        {
+                          echo '<a href="" class="btn btn-default btn-xs" >Dalam Proses</a>';
+                        }
+                        else
+                        {
+                          echo '<a href="" class="btn btn-warning btn-xs" >Dalam Proses</a>';
+                        }
+                        
+                        }
+                        else
+                        {
+                          echo '<a href="" class="btn btn-success btn-xs" >Selesai</a>';
+                        }
+                        ?>                    
                       
                       </td>
                       <td class="text-center">
-                        <a class="btn btn-default btn-sm" href="<?=base_url('admin/penelitian/detail/'.$row['id_penelitian']); ?>">
+                      <!--   <a class="btn btn-default btn-sm" href="<?=base_url('admin/penelitian/detail/'.$row['id_penelitian']); ?>">
                           <i class="fa fa-eye" style="color:green;"></i>
                         </a>
-                        <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/penelitian/hapus/'.$row['id_penelitian']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
-                        
+                       <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/penelitian/hapus/'.$row['id_penelitian']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                      -->
                         
                          <a class="btn btn-default btn-sm" href="<?=base_url('admin/penelitian/edit/'.$row['id_penelitian']); ?>">
                           <i class="fas fa-pencil-alt" style="color:green;"></i>

@@ -203,8 +203,7 @@ class Penelitian extends Admin_Controller
 
 
 
-	public function update_penelitian()
-	{
+	public function update_penelitian()	{
 
 
 
@@ -212,8 +211,6 @@ class Penelitian extends Admin_Controller
 		//$path = 'uploads/penelitian/';
 
 		$path = './uploads/penelitian/';
-
-
 
 		if (!file_exists($path)) {
 			mkdir($path, 0777, true);
@@ -397,8 +394,58 @@ class Penelitian extends Admin_Controller
 		redirect(base_url('admin/penelitian/tambah_kegiatan/' . $id));
 	}
 
+	public function tambah_dokumen($kat = 0, $id_penelitian = 0)
+	{
+
+		$data['id_penelitian'] = $id_penelitian;
+		$data['kat'] = $kat;
+		$data['dokumentasi_kegiatan'] = $this->penelitian_model->dokumentasi_kegiatan($id_penelitian);
+
+		$data['view'] = 'penelitian/tambah_dokumen';
+		$this->load->view('admin/layout', $data);
+	}
 
 
+	public function tambah_dokumen_proses()
+	{
+		if ($this->input->post('submit')) {
+
+
+			$upload_path = './uploads/dokumen/penelitian';
+
+			if (!is_dir($upload_path)) {
+				mkdir($upload_path, 0777, TRUE);
+			}
+			//$newName = "hrd-".date('Ymd-His');
+			$config = array(
+				'upload_path' => $upload_path,
+				'allowed_types' => "jpg|jpeg|png|pdf",
+				'overwrite' => FALSE,
+			);
+
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('file');
+			$penelitian = $this->upload->data();
+			$file = $upload_path . '/' . $penelitian['file_name'];
+			$kat =  $this->input->post('kat');
+
+			$this->db->where('id_penelitian', $this->input->post('id_penelitian'));			
+		 	$result = $this->db->update('penelitian', array( $kat => $file));
+		
+			 if ($result) {
+				$this->session->set_flashdata('msg', 'Data telah ditambahkan!');
+				redirect(base_url('admin/penelitian/detail/' . $this->input->post('id_penelitian')));
+			}
+
+		}
+	}
+
+	public function hapus_dokumen($id)
+	{
+		$this->db->delete('dokumentasi_kegiatan', array('id_dokumentasi' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
+		redirect(base_url('admin/penelitian/tambah_kegiatan/' . $id));
+	}
 
 	public function hapus($id = 0, $uri = NULL)
 	{

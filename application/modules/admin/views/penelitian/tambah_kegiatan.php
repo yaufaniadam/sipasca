@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Tambah Dokumentasi Kegiatan <a class="btn btn-warning btn-sm" href="<?= base_url('admin/penelitian/detail/' . $id_penelitian); ?>">Kembali</a></h1>
+        <h1>Tambah Gambar <a class="btn btn-warning btn-sm" href="<?= base_url('admin/penelitian/detail/' . $id_penelitian); ?>">Kembali</a></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -47,7 +47,7 @@
 
       <div class="card card-secondary">
         <div class="card-header">
-          <h3 class="card-title">Dokumen</h3>
+          <h3 class="card-title">Gambar</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -57,7 +57,7 @@
         <div class="card-body">
 
           <div class="form-group">
-            <label for="judul">Nama</label>
+            <label for="judul">Judul Gambar</label>
             <input name="nama" value="<?php if (validation_errors()) {
                                         echo set_value('nama');
                                       } ?>" type="text" id="nama" class="form-control">
@@ -65,7 +65,7 @@
 
 
           <div class="form-group">
-            <label for="inputEstimatedBudget">Photo Kegiatan</label>
+            <label for="inputEstimatedBudget">Gambar</label>
             <input name="photo" type="file" id="inputEstimatedBudget" class="form-control" required="required">
 
           </div>
@@ -88,7 +88,7 @@
         <thead>
           <tr>
             <th width="11%" class="text-center">No</th>
-            <th width="40%" class="text-center">Nama Photo</th>
+            <th width="40%" class="text-center">Judul Gambar</th>
             <th width="21%" class="text-center">Thumbnail</th>
             <th width="28%" class="text-center">Opsi</th>
           </tr>

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tambah Photo Kegiatan </h1>
+            <h1>Tambah Gambar </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,7 +48,7 @@
 
           <div class="card card-secondary">
             <div class="card-header">
-              <h3 class="card-title">Dokumen</h3>
+              <h3 class="card-title">Gambar</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -58,13 +58,13 @@
             <div class="card-body">
             
             <div class="form-group">
-                <label for="judul">Nama</label>
+                <label for="judul">Judul Gambar</label>
                 <input name="nama" value="<?php if(validation_errors()) {echo set_value('nama'); } ?>" type="text" id="nama" class="form-control">
               </div>
             
             
               <div class="form-group">
-                <label for="inputEstimatedBudget">Photo Kegiatan</label>
+                <label for="inputEstimatedBudget">Gambar</label>
                 <input name="photo" type="file" id="inputEstimatedBudget" class="form-control" required="required">
                 
               </div>             
@@ -90,7 +90,8 @@
                 <thead>
                 <tr>
                   <th width="11%"  class="text-center">No</th>
-                  <th width="61%" class="text-center" >Nama Photo</th>                  
+                  <th width="61%" class="text-center" >Judul Gambar</th>   
+                  <th width="21%" class="text-center">Thumbnail</th>               
                   <th width="28%" class="text-center">Opsi</th>
                   </tr>
                 </thead>
@@ -117,7 +118,10 @@
 						  echo $d['nama'];
 					  }
 					  
-					  ?></td>                 
+            ?></td>     
+             <td class="text-center">
+              <img width="100" src="<?php echo base_url(); ?><?= $d['photo']; ?>" class="img-thumbnail mb-2" />
+              </td>            
                       <td class="text-center">
                       
      <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/penelitian/hapus_kegiatan/'.$d['id_dokumentasi']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>

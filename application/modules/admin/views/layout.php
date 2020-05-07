@@ -96,8 +96,8 @@ function indonesian_date ($timestamp = '', $date_format = 'j F Y', $suffix = 'WI
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Program Pascasarjana UMY</a>. </strong>
-    All rights reserved. Nama Akun Anda <?php echo $this->session->userdata("firstname"); ?>
+    <strong>Copyright &copy; 2020 <a href="<?=base_url(); ?>">Program Pascasarjana UMY</a>. </strong>
+    All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0
     </div>

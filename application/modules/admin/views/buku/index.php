@@ -41,7 +41,7 @@
           <table id="tb_buku" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th style="width:40%">Judul Buku</th>
+                <th style="width:60%">Judul Buku</th>
                 <th class="text-center">Dosen</th>
                 <?php if ($this->session->userdata('id_prodi') == 0) { ?>
                   <th class="text-center">Prodi</th>
@@ -52,17 +52,20 @@
             <tbody>
               <?php foreach ($buku as $row) { ?>
                 <tr>
-                  <td><?= $row['judul_buku']; ?></td>
+                  <td> <a href="<?= base_url('admin/buku/detail/' . $row['id_buku']); ?>">
+                    <?= $row['judul_buku']; ?></a></td>
                   <td class="text-center"><?= $row['firstname']; ?></td>
                   <?php if ($this->session->userdata('id_prodi') == 0) { ?>
                     <td class="text-center"><?= $row['prodi']; ?></td>
                   <?php }  ?>
                   <td class="text-center">
-                    <a class="btn btn-default btn-sm" href="<?= base_url('admin/buku/detail/' . $row['id_buku']); ?>">
-                      <i class="fa fa-eye" style="color:green;"></i>
-                    </a>
-                    <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?= base_url('admin/buku/hapus/' . $row['id_buku']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
-                  </td>
+                    
+                    <?php  if ($this->session->userdata['is_admin'] == 2) { ?>
+                        <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?=base_url('admin/buku/hapus/'.$row['id_buku']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                        <?php }  ?>
+                        <a class="btn btn-default btn-sm" href="<?=base_url('admin/buku/edit/'.$row['id_buku']); ?>">
+                          <i class="fas fa-pencil-alt" style="color:green;"></i>
+                    </td>
                 </tr>
               <?php } ?>
             </tbody>

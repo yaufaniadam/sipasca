@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">pengabdian</h1>
+        <h1 class="m-0 text-dark">Pengabdian Masyarakat</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -59,7 +59,7 @@ foreach ($detail_pengabdian->result_array() as $a) {
                 ?>
               </div>
 
-              <h3 class="profile-username text-center"><?= $a['nama_dosen']; ?></h3>
+              <p class="pt-2 text-center text-bold"><?= $a['nama_dosen']; ?></p>
               <p class="text-muted text-center"><?= $a['prodi']; ?></p>
 
               <ul class="list-group list-group-unbordered mb-3">
@@ -91,59 +91,7 @@ foreach ($detail_pengabdian->result_array() as $a) {
           </div>
           <!-- /.card -->
 
-          <div class="card card-olive card-outline">
-           
-            <div class="card-body" style="padding-top:0;">
-              <?php echo form_open_multipart(base_url('admin/pengabdian/update_pengabdian'), '') ?>
-              <input name="id_pengabdian" type="hidden" value="<?= $a['id_pengabdian']; ?>" />
-              <input name="file_sk_hidden" type="hidden" value="<?= $a['file_sk']; ?>" />
-              <input name="file_akhir_hidden" type="hidden" value="<?= $a['file_akhir']; ?>" />
-              <input name="id_checklist_penilaian_hidden" type="hidden" value="<?= $a['id_checklist_penilaian']; ?>" />
-            
-              <br />
-
-
-
-
-
-              <?php
-            if ($this->session->userdata('is_admin') == 2) //staff
-              {
-              
-              ?>
-                
-               <strong>Upload File SK </strong><br />
-                  <input name="file_sk" type="file">  
-                 
-                 
-                  
-				  
-                  <hr />
-                <strong>Upload Laporan Akhir </strong><br />
- 				                      <input name="file_akhir" type="file">
-           
-               
-
-                <hr />
-               
-                
-                                  <div class="text-right"><button type="submit" class="btn btn-success">Update</button></div>
-
-                
-              <?php
-              } else if ($this->session->userdata('is_admin') == 4) //Dosen
-              {
-              ?>
-                <font color="red">Disini View Dosen Nilai....bla bla..</font>
-              <?php
-              }
-              ?>
-
-
-              
-              </form>
-            </div>
-          </div>
+        
         </div>
         <!-- /.col -->
         <div class="col-md-9">
@@ -173,50 +121,65 @@ foreach ($detail_pengabdian->result_array() as $a) {
 
               <table class="table table-bordered table-striped">
                 <tr>
-                  <th style="width:85%">Keterangan</th>
+                  <th style="width:80%">Keterangan</th>
                   <th>Dokumen</th>
                 </tr>
                 <tr>
                   <td>Proposal</td>
                   <td>
-                    <?php
-                    if ($a['file'] == "") {
-                      echo "<font color=red>Belum Ada</font>";
-                    } else {
-                    ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file']; ?>" class="btn btn-warning btn-sm"  target="_blank"><i class="fa fa-download"></i> Unduh</a>
-                    <?php
-                    }
-                    ?>
-                  </td>
+										<?php
+										if ($a['file'] == "") { 
+											if ($this->session->userdata['is_admin'] == 2) { ?>
+											<a href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i>
+												Unggah</a>
+										<?php } else { echo "Belum ada file"; }
+										 } else {
+										?>
+											<a href="<?php echo base_url(); ?><?= $a['file']; ?>" class="btn btn-warning btn-sm" target="_blank"><i class="fa fa-download"></i> Unduh</a> 
+										<?php if ($this->session->userdata['is_admin'] == 2) { ?>	
+											<a title="Edit File Proposal" href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+										<?php }
+										}
+										?>
+									</td>
                 </tr>
                 <tr>
-                  <td>Proposal Sk</td>
+                  <td>SK Pengabdian</td>
                   <td>
-                    <?php
-                    if ($a['file_sk'] == "") {
-                      echo "<font color=red>Belum Ada</font>";
-                    } else {
-                    ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file_sk']; ?>" class="btn btn-warning btn-sm" target="_blank" ><i class="fa fa-download"></i> Unduh</a>
-                    <?php
-                    }
-                    ?>
-                  </td>
+										<?php
+										if ($a['file_sk'] == "") { 
+											if ($this->session->userdata['is_admin'] == 2) { ?>
+											<a href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file_sk/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i>
+												Unggah</a>
+										<?php } else { echo "Belum ada file"; }
+										 } else {
+										?>
+											<a href="<?php echo base_url(); ?><?= $a['file_sk']; ?>" class="btn btn-warning btn-sm" target="_blank"><i class="fa fa-download"></i> Unduh</a> 
+										<?php if ($this->session->userdata['is_admin'] == 2) { ?>	
+											<a title="Edit File Proposal" href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file_sk/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+										<?php }
+										}
+										?>
+									</td>
                 </tr>
                 <tr>
                   <td>Laporan pengabdian</td>
                   <td>
-                    <?php
-                    if ($a['file_akhir'] == "") {
-                      echo "<font color=red>Belum Ada</font>";
-                    } else {
-                    ?>
-                      <a href="<?php echo base_url(); ?><?= $a['file_akhir']; ?>" class="btn btn-warning btn-sm"  target="_blank"><i class="fa fa-download"></i> Unduh</a>
-                    <?php
-                    }
-                    ?>
-                  </td>
+										<?php
+										if ($a['file_akhir'] == "") { 
+											if ($this->session->userdata['is_admin'] == 2) { ?>
+											<a href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file_akhir/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i>
+												Unggah</a>
+										<?php } else { echo "Belum ada file"; }
+										 } else {
+										?>
+											<a href="<?php echo base_url(); ?><?= $a['file_akhir']; ?>" class="btn btn-warning btn-sm" target="_blank"><i class="fa fa-download"></i> Unduh</a> 
+										<?php if ($this->session->userdata['is_admin'] == 2) { ?>	
+											<a title="Edit File Proposal" href="<?php echo base_url('admin/pengabdian/tambah_dokumen/file_akhir/'. $a['id_pengabdian']); ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+										<?php }
+										}
+										?>
+									</td>
                 </tr>
               </table>
             </div><!-- /.card-body -->
@@ -225,12 +188,12 @@ foreach ($detail_pengabdian->result_array() as $a) {
 
           <div class="card">
             <div class="card-header pl-3 pt-2 pb-2">
-              Dokumentasi Kegiatan
+              Gambar
               <?php 
               if($this->session->userdata['is_admin'] == 2) {
               
               ?>
-                <a class="btn btn-warning btn-sm float-right" href="<?php echo base_url(); ?>admin/pengabdian/tambah_kegiatan/<?= $a['id_pengabdian']; ?>"> <i class="fas fa-image"></i> Tambah/Edit Dokumentasi</a>
+                <a class="btn btn-warning btn-sm float-right" href="<?php echo base_url(); ?>admin/pengabdian/tambah_kegiatan/<?= $a['id_pengabdian']; ?>"> <i class="fas fa-image"></i> Tambah/Edit Gambar</a>
               <?php
            
             } // endif is admin
@@ -269,4 +232,5 @@ foreach ($detail_pengabdian->result_array() as $a) {
         });
       });
     })
+    $("#pengabdian").addClass('menu-open');
   </script>
