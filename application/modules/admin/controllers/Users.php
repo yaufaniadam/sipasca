@@ -127,6 +127,8 @@ class Users extends Mimin_Controller
 					'firstname' => $this->input->post('firstname'),
 					'email' => $this->input->post('email'),
 					'mobile_no' => $this->input->post('mobile_no'),
+					'is_admin' => $this->input->post('is_admin'),
+					'id_prodi' => $this->input->post('id_prodi'),
 					'password' => ($this->input->post('password') !== "" ? password_hash($this->input->post('password'), PASSWORD_BCRYPT) : $this->input->post('password_hidden')),
 					'updated_at' => date('Y-m-d : h:m:s'),
 					'photo' => ($foto_profil['file_name']) !== "" ? $upload_path . '/' . $foto_profil['file_name'] : $this->input->post('foto_profil_hidden'),
