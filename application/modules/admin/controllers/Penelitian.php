@@ -36,17 +36,6 @@ class Penelitian extends Admin_Controller
 
 	public function edit($id_penelitian)
 	{
-
-
-
-		$data['edit_penelitian'] = $this->penelitian_model->edit_penelitian($id_penelitian);
-		$data['dosen'] = $this->penelitian_model->dosen();
-		$data['view'] = 'penelitian/edit';
-		$this->load->view('admin/layout', $data);
-	}
-
-	public function update()
-	{
 		if ($this->input->post('submit')) {
 
 			$this->form_validation->set_rules('judul_penelitian', 'Judul Penelitian', 'trim|required');
@@ -55,15 +44,11 @@ class Penelitian extends Admin_Controller
 
 			if ($this->form_validation->run() == FALSE) {
 
-				$data['edit_penelitian'] = $this->penelitian_model->edit_penelitian($this->input->post('id_penelitian'));
+				$data['edit_penelitian'] = $this->penelitian_model->edit_penelitian($id_penelitian);
 				$data['dosen'] = $this->penelitian_model->dosen();
 				$data['view'] = 'penelitian/edit';
 				$this->load->view('admin/layout', $data);
 			} else {
-
-
-
-
 				if ($_FILES['file_penelitian']['name'] == "") {
 					$file_penelitian = $_POST['file_hidden'];
 				} else {
@@ -110,18 +95,20 @@ class Penelitian extends Admin_Controller
 
 				);
 
-				$where = array('id_penelitian' => $this->input->post('id_penelitian'));
-
-				$data = $this->security->xss_clean($data);
+				$where = array('id_penelitian' => $id_penelitian);			
+				$data = $this->security->xss_clean($data);					
 				$result = $this->penelitian_model->update($data, $where);
-
-
-
+					
 				if ($result) {
 					$this->session->set_flashdata('msg', 'Data telah diUbah!');
-					redirect(base_url('admin/penelitian/edit/' . $this->input->post('id_penelitian')));
+					redirect(base_url('admin/penelitian/'));
 				}
 			}
+		} else {
+			$data['edit_penelitian'] = $this->penelitian_model->edit_penelitian($id_penelitian);
+			$data['dosen'] = $this->penelitian_model->dosen();
+			$data['view'] = 'penelitian/edit';
+			$this->load->view('admin/layout', $data);
 		}
 	}
 

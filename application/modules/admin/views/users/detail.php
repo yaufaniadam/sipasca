@@ -30,7 +30,7 @@
                    <?php if($user['photo'] == '' ) { ?>
                      
                       <img class="profile-user-img img-fluid img-circle"
-                            src="<?=base_url(); ?>public/dist/img/avatar5.png"
+                            src="<?=base_url(); ?>public/dist/img/nophoto.png"
                             alt="User profile picture">
 
                     <?php } else { ?>

@@ -42,7 +42,7 @@
               <li class="nav-item tambahbaru">
                 <a href="<?=base_url('admin/penelitian/tambah');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Tambah Baru</p>
+                  <p>Tambah Penelitian</p>
                 </a>
               </li>  
 
@@ -190,6 +190,12 @@
                 <a href="<?=base_url('admin/users/add'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Pengguna</p>
+                </a>
+              </li> 
+              <li class="nav-item upload_pengguna">
+                <a href="<?=base_url('admin/users/upload'); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Upload Pengguna</p>
                 </a>
               </li> 
                

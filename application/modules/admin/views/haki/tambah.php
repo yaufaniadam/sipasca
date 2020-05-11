@@ -195,7 +195,7 @@
 });
   
   $("#haki").addClass('menu-open');
-  $("#haki .tambahbaru a.nav-link").addClass('active');
+  $("#haki .tambahhaki a.nav-link").addClass('active');
 </script>
 
 

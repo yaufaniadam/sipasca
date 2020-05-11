@@ -44,7 +44,7 @@ foreach ($detail_buku->result_array() as $a) {
 					<div class="card card-olive card-outline">
 						<div class="card-body box-profile">
 							<div class="text-center">
-
+								
 								<?php
 								if ($a['photo'] == "") {
 								?>
@@ -83,10 +83,21 @@ foreach ($detail_buku->result_array() as $a) {
 									}
 									?>
 								</a>
+								</li>	
+								
+								<li class="list-group-item">
+								<b>ISBN </b> <a class="float-right">
+									<?= ($isbn) ? $isbn : '-';?>
+								</a>
+								</li>	
+								<li class="list-group-item">
+									<b>Penerbit</b> <a class="float-right"><?= $a['penerbit']; ?></a>
 								</li>
-							
 								
 							</ul>
+
+							
+
 						</div>
 						<!-- /.card-body -->
 					</div>
@@ -95,37 +106,20 @@ foreach ($detail_buku->result_array() as $a) {
 				</div>
 				<!-- /.col -->
 				<div class="col-md-9">
+					
+					<h4 class="h2 mb-3"><?= $a['judul_buku']; ?></h4>
+						
 					<div class="card">
-						<div class="card-header p-3">
-							<h4><?= $a['judul_buku']; ?></h4>
-						</div><!-- /.card-header -->
-					</div>
-					<div class="card">
-						<div class="card-header pl-3 pt-2 pb-2">
-							Deskripsi
-						</div><!-- /.card-header -->
-
+						
 						<div class="card-body">
 
 							<?= $a['deskripsi']; ?>
-						</div>
-					</div>
+					
 
-
-
-					<div class="card">
-						<div class="card-header pl-3 pt-2 pb-2">
-							Dokumen
-						</div><!-- /.card-header -->
-						<div class="card-body">
-
-							<table class="table table-bordered table-striped">
+							<table class="table table-bordered table-striped mt-3">
+								
 								<tr>
-									<th style="width:80%">Keterangan</th>
-									<th>Dokumen</th>
-								</tr>
-								<tr>
-									<td>Format Digital</td>
+									<td style="width:80%">Format Digital</td>
 									<td>
 										<?php
 										if ($a['file'] == "") { 

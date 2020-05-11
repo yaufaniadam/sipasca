@@ -62,7 +62,7 @@
           } else {
           ?>
             <div class="form-group">
-              <label for="deskripsi">Jenis Publikasi</label>
+              <label for="deskripsi">Jurnal</label>
               <select name="id_jenis_publikasi" onchange='jenis_publikasi(this);' required class="form-control">
                 <option value="">Pilih..</option>
                 <?php
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group">
-              <label for="deskripsi">Sub Jenis Publikasi</label>
+              <label for="deskripsi">Kategori</label>
               <div id="jeispub"> <select required class="form-control"></select> </div>
             </div>
 

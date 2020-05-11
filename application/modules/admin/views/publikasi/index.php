@@ -70,7 +70,7 @@
                   </td>
                   <td class="text-center">
                    
-                    <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?= base_url('admin/publikasi/hapus/' . $row['id_publikasi']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+                   <!-- <a href="" style="color:#fff;" title="Hapus" class="delete btn btn-xs btn-danger" data-href="<?= base_url('admin/publikasi/hapus/' . $row['id_publikasi']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>-->
                     <a class="btn btn-default btn-sm" href="<?= base_url('admin/publikasi/edit/' . $row['id_publikasi']); ?>">
                       <i class="fas fa-pencil-alt" style="color:green;"></i>
                     </a>

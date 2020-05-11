@@ -70,6 +70,9 @@ foreach ($detail_pengabdian->result_array() as $a) {
                   <b>Tanggal</b> <a class="float-right"><?= indonesian_date($a['date']); ?></a>
                 </li>
                 <li class="list-group-item">
+                  <b>Lokasi</b> <a class="float-right"><?=$a['lokasi']; ?></a>
+                </li>
+                <li class="list-group-item">
                   <b>Status</b> <a class="float-right btn btn-xs btn-default">
                     <?php
                     if ($a['file_akhir'] == "") {
@@ -95,37 +98,19 @@ foreach ($detail_pengabdian->result_array() as $a) {
         </div>
         <!-- /.col -->
         <div class="col-md-9">
+              <h4 class="h2 mb-3"><?= $a['judul_pengabdian']; ?></h4>
+           
           <div class="card">
-            <div class="card-header p-3">
-              <h4><?= $a['judul_pengabdian']; ?></h4>
-            </div><!-- /.card-header -->
-          </div>
-          <div class="card">
-            <div class="card-header pl-3 pt-2 pb-2">
-              Deskripsi
-            </div><!-- /.card-header -->
+            
 
             <div class="card-body">
 
               <?= $a['deskripsi']; ?>
-            </div>
-          </div>
-
-
-
-          <div class="card">
-            <div class="card-header pl-3 pt-2 pb-2">
-              Dokumen
-            </div><!-- /.card-header -->
-            <div class="card-body">
-
-              <table class="table table-bordered table-striped">
+          
+              <table class="table table-bordered table-striped mt-3">
+                
                 <tr>
-                  <th style="width:80%">Keterangan</th>
-                  <th>Dokumen</th>
-                </tr>
-                <tr>
-                  <td>Proposal</td>
+                  <td style="width:80%">Proposal</td>
                   <td>
 										<?php
 										if ($a['file'] == "") { 

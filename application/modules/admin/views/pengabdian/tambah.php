@@ -230,7 +230,7 @@
 });
   
   $("#pengabdian").addClass('menu-open');
-  $("#pengabdian .tambahbaru a.nav-link").addClass('active');
+  $("#pengabdian .tambahpengabdian a.nav-link").addClass('active');
 </script>
 
 

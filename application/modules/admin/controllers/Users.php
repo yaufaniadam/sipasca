@@ -8,7 +8,9 @@ class Users extends Mimin_Controller
 		$this->load->model('admin/user_model', 'user_model');
 		$this->load->model('admin/profile_model', 'profile_model');
 		$this->load->model('admin/prodi_model', 'prodi_model');
+		$this->load->model('admin/user_model', 'user_model');
 		$this->load->library('datatable'); // loaded my custom serverside datatable library
+		$this->load->library('excel');
 	}
 
 	public function index($role = 0)
@@ -135,13 +137,9 @@ class Users extends Mimin_Controller
 
 				if ($result) {
 					$this->session->set_flashdata('msg', 'Pengguna berhasil diubah!');
-					redirect(base_url('admin/users'));
+					redirect(base_url('admin/users/edit/'.$id));
 				}
-				print_r($data);
-
-				echo ($this->input->post('foto_profil') !== "" ? "ada" : "kosong");
-
-				echo $this->input->post('foto_profil_hidden');
+				
 			}
 		} else {
 			$data['prodi'] = $this->prodi_model->get_all_prodi();
@@ -164,5 +162,91 @@ class Users extends Mimin_Controller
 		$this->db->delete('ci_users', array('id' => $id));
 		$this->session->set_flashdata('msg', 'Pengguna berhasil dihapus!');
 		redirect(base_url('admin/users'));
+	}
+
+	public function upload()
+	{
+
+		if (isset($_POST['submit'])) {
+
+			$upload_path = './uploads/users';
+
+			if (!is_dir($upload_path)) {
+				mkdir($upload_path, 0777, TRUE);
+			}
+		
+			$config = array(
+				'upload_path' => $upload_path,
+				'allowed_types' => "xlsx",
+				'overwrite' => FALSE,
+			);
+
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('file');
+			$upload = $this->upload->data();
+
+
+			if ($upload) { // Jika proses upload sukses			    	
+
+				$excelreader = new PHPExcel_Reader_Excel2007();
+				$loadexcel = $excelreader->load('./uploads/users/' . $upload['file_name']); // Load file yang tadi diupload ke folder excel
+				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+				$data['sheet'] = $sheet;
+				$data['file_excel'] = $upload['file_name'];
+
+				$data['title'] = 'Upload Pengguna';
+				$data['view'] = 'admin/users/upload';
+			
+				$this->load->view('layout', $data);
+			} else {
+	
+				$data['title'] = 'Upload Pengguna';
+				$data['view'] = 'admin/users/upload';
+				$this->load->view('layout', $data);
+			}
+		} else {
+			
+			$data['title'] = 'Upload Pengguna';
+			$data['view'] = 'admin/users/upload';
+			$this->load->view('layout', $data);
+		}
+	}
+
+	public function import($file_excel)
+	{
+
+		$excelreader = new PHPExcel_Reader_Excel2007();
+		$loadexcel = $excelreader->load('./uploads/users/' . $file_excel); // Load file yang telah diupload ke folder excel
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+		$data2 = array();
+
+			$numrow = 1;
+			foreach ($sheet as $row) {
+
+				if ($numrow > 1) {
+
+					$id_prodi = $this->db->get_where('prodi',array('singkatan'=> $row['D']))->row()->id_prodi;
+				
+					// Kita push (add) array data ke variabel data
+					array_push($data2, array(
+						'password' => password_hash($row['A'], PASSWORD_BCRYPT), 
+						'username' => $row['A'], 						
+						'firstname' => $row['B'], 						
+						'email' => $row['C'],
+						'id_prodi' => $id_prodi,
+						'is_admin' => $row['E'],
+						'created_at' => date('Y-m-d : h:m:s'),						
+					));
+				}
+
+				$numrow++; // Tambah 1 setiap kali looping
+			}
+
+		// Panggil fungsi insert_pengguna
+		$this->user_model->import_users($data2);
+
+		redirect("admin/users"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 	}
 }

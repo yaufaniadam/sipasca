@@ -17,6 +17,7 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/custom.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url() ?>public/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->

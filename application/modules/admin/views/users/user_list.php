@@ -58,7 +58,20 @@
                 <tbody>
                   <?php foreach($users->result_array() as $row ) {  ?>
                     <tr>
-                      <td><?=$row['firstname'];?></td>
+                      <td>
+                          <?php if($row['photo'] == '' ) { ?>
+                        
+                            <img width="40" height="" class="img-fluid img-circle"
+                                  src="<?=base_url(); ?>public/dist/img/nophoto.png"
+                                  alt="User profile picture">
+
+                          <?php } else { ?>
+
+                            <img  width="40" height="" class="img-fluid img-circle"
+                                  src="<?=base_url($row['photo'] ); ?>">
+
+                      <?php } ?> &nbsp;
+                      <?=$row['firstname'];?></td>
                       <td><?=$row['email'];?></td>
 
                       <?php if ($role == 2 || $role == 4 ) { ?>           
@@ -66,9 +79,9 @@
                       <?php } ?>                      
 
                       <td class="text-center">
-                        <a class="btn btn-default btn-sm" href="<?=base_url('admin/users/detail/'.$row['id']); ?>">
+                       <!-- <a class="btn btn-default btn-sm" href="<?=base_url('admin/users/detail/'.$row['id']); ?>">
                           <i class="fa fa-search" style="color:;"></i>
-                        </a>
+                        </a>-->
                         <a class="btn btn-default btn-sm" href="<?=base_url('admin/users/edit/'.$row['id']); ?>">
                           <i class="fas fa-pencil-alt" style="color:;"></i>
                         </a>

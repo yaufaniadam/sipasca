@@ -21,51 +21,53 @@
 foreach ($detail_publikasi->result_array() as $a) {
 ?>
 
-	<section class="content">
+<section class="content">
 
-		<?php if ($this->session->flashdata('msg') != '') { ?>
-			<div class="alert alert-success flash-msg alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				<h4>Success!</h4>
-				<?= $this->session->flashdata('msg'); ?>
-			</div>
-		<?php } ?>
+	<?php if ($this->session->flashdata('msg') != '') { ?>
+	<div class="alert alert-success flash-msg alert-dismissible">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h4>Success!</h4>
+		<?= $this->session->flashdata('msg'); ?>
+	</div>
+	<?php } ?>
 
-		<div class="container-fluid">
-			<div class="row">
+	<div class="container-fluid">
+		<div class="row">
 
-				<div class="col-md-3">
+			<div class="col-md-3">
 
-					<!-- Profile Image -->
-					<div class="card card-olive card-outline">
-						<div class="card-body box-profile">
-							<div class="text-center">
+				<!-- Profile Image -->
+				<div class="card card-olive card-outline">
+					<div class="card-body box-profile">
+						<div class="text-center">
 
-								<?php
+							<?php
 								if ($a['photo'] == "") {
 								?>
-									<img class="img-circle" height="150" width="150"  src="<?= base_url() ?>public/dist/img/nophoto.png">
-								<?php
+							<img class="img-circle" height="150" width="150"
+								src="<?= base_url() ?>public/dist/img/nophoto.png">
+							<?php
 								} else {
 								?>
-									<img class="img-circle" src="<?php echo base_url(); ?><?= $a['photo']; ?>" height="150" width="150" />
-								<?php
+							<img class="img-circle" src="<?php echo base_url(); ?><?= $a['photo']; ?>" height="150"
+								width="150" />
+							<?php
 								}
 								?>
-							</div>
-							<p class="text-center text-bold pt-3"><?= $a['nama_dosen']; ?></p>
-							<p class="text-muted text-center"><?= $a['prodi']; ?></p>
+						</div>
+						<p class="text-center text-bold pt-3"><?= $a['nama_dosen']; ?></p>
+						<p class="text-muted text-center"><?= $a['prodi']; ?></p>
 
-							<ul class="list-group list-group-unbordered mb-3">
-								<li class="list-group-item">
-									<b>Pengunggah</b> <a class="float-right"><?= $a['nama_pengupload']; ?></a>
-								</li>
-								<li class="list-group-item">
-									<b>Tanggal</b> <a class="float-right"><?= indonesian_date($a['date']); ?></a>
-								</li>
-								<li class="list-group-item">
-									<b>Status</b> <a class="float-right btn btn-xs btn-default">
-										<?php
+						<ul class="list-group list-group-unbordered mb-3">
+							<li class="list-group-item">
+								<b>Pengunggah</b> <a class="float-right"><?= $a['nama_pengupload']; ?></a>
+							</li>
+							<li class="list-group-item">
+								<b>Tanggal</b> <a class="float-right"><?= indonesian_date($a['date']); ?></a>
+							</li>
+							<li class="list-group-item">
+								<b>Status</b> <a class="float-right btn btn-xs btn-default">
+									<?php
 										if ($a['link_publikasi'] == "") {
 											if ($a['status'] == 0) {
 												echo "Lengkapi Dokumen";
@@ -76,12 +78,12 @@ foreach ($detail_publikasi->result_array() as $a) {
 											echo "Dokumen Lengkap";
 										}
 										?>
-									</a>
-								</li>
+								</a>
+							</li>
 
-								<li class="list-group-item">
-									<b>Jurnal</b>
-									<a class="float-right btn btn-xs btn-default">
+							<li class="list-group-item">
+								<b>Jurnal</b>
+								<a class="float-right btn btn-xs btn-default">
 									<?php
 									if ($a['jenis_publikasi'] == "") {
 										echo "<font color=red><em>Belum Ada</em></font>";
@@ -89,12 +91,12 @@ foreach ($detail_publikasi->result_array() as $a) {
 										echo $a['jenis_publikasi'];
 									}
 									?>
-									</a>
-								</li>
-								<li class="list-group-item">
-									<b>Kategori</b>
-									<a class="float-right btn btn-xs btn-default">
-									
+								</a>
+							</li>
+							<li class="list-group-item">
+								<b>Kategori</b>
+								<a class="float-right btn btn-xs btn-default">
+
 									<?php
 
 									if ($a['jenis_publikasi'] == "") {
@@ -108,168 +110,163 @@ foreach ($detail_publikasi->result_array() as $a) {
 										}
 									}
 									?>
-									</a>
-								</li>
-								<li class="list-group-item">
-									<?php
+								</a>
+							</li>
+							<li class="list-group-item">
+								<?php
 									if ($a['link_publikasi'] == "") { ?>
-										<a class="btn btn-success btn-lg btn-block disabled" target="_blank">Link Publikasi</a>
-									<?php } else {
+								<a class="btn btn-success btn-lg btn-block disabled" target="_blank">Link Publikasi</a>
+								<?php } else {
 									?>
-										<a href="<?= $a['link_publikasi']; ?>" class="btn btn-success  btn-block btn-lg" target="_blank">Link Publikasi</a>
-									<?php
+								<a href="<?= $a['link_publikasi']; ?>" class="btn btn-success  btn-block btn-lg"
+									target="_blank">Link Publikasi</a>
+								<?php
 									}
 									?>
-								</li>
-								<?php
+							</li>
+							<?php
 									if ($this->session->userdata['is_admin'] == 2) {
 								?>
-									<li class="list-group-item">
-										<span>Jika jurnal diterima, masukkan URL jurnal tersebut di bawah ini.</span>
-										
-									
+							<li class="list-group-item">
+								<span>Jika jurnal diterima, masukkan URL jurnal tersebut di bawah ini.</span>
 
-									<?php echo form_open_multipart(base_url('admin/publikasi/update_publikasi'), '') ?>
-									<input name="id_publikasi" type="hidden" value="<?= $a['id_publikasi']; ?>" />
-									<input name="link_publikasi_hidden" type="hidden" value="<?= $a['link_publikasi']; ?>" />
-									<input name="hasil_penilaian_hidden" type="hidden" value="<?= $a['hasil_penilaian']; ?>" />
-									<input name="komentar_reviewer_hidden" type="hidden" value="<?= $a['komentar_reviewer']; ?>" />
-									<input name="tgl_hasil_penilaian_hidden" type="hidden" value="<?= $a['tgl_hasil_penilaian']; ?>" />
-																
-									<input name="link_publikasi" type="url" class="form-control" value="<?= $a['link_publikasi']; ?>" />
-									<button type="submit" class="btn btn-success mt-2">Update</button>	
-									
-									</li>
-								<?php } ?>
+								<?php echo form_open_multipart(base_url('admin/publikasi/update_publikasi'), '') ?>
+								<input name="id_publikasi" type="hidden" value="<?= $a['id_publikasi']; ?>" />
 
-						</form>
+								<input name="hasil_penilaian_hidden" type="hidden"
+									value="<?= $a['hasil_penilaian']; ?>" />
+								<input name="komentar_reviewer_hidden" type="hidden"
+									value="<?= $a['komentar_reviewer']; ?>" />
+								<input name="tgl_hasil_penilaian_hidden" type="hidden"
+									value="<?= $a['tgl_hasil_penilaian']; ?>" />
 
-						</div>
-						<!-- /.card-body -->
+								<input name="link_publikasi" type="url" class="form-control"
+									value="<?= $a['link_publikasi']; ?>" placeholder="http://" />
+								<button type="submit" class="btn btn-success mt-2">Update</button>
+
+							</li>
+							<?php } ?>
+
+							</form>
+
 					</div>
-					<!-- /.card -->
-
+					<!-- /.card-body -->
 				</div>
-				<!-- /.col -->
-				<div class="col-md-9">
-					<div class="card">
-						<div class="card-header p-3">
-							<h4><?= $a['judul_publikasi']; ?></h4>
-						</div><!-- /.card-header -->
-					</div>
-					<div class="card">
-						<div class="card-header p-3">
-							Deskripsi
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<div class="tab-content">
-								<div class="active tab-pane" id="activity">
-									<?= $a['deskripsi']; ?>
-								</div>
-							</div>
-						</div>
-					</div>
+				<!-- /.card -->
 
-					<div class="card">
-						<div class="card-header pl-3 pt-2 pb-2">
-							Dokumen
-						</div><!-- /.card-header -->
-						<div class="card-body">
+			</div>
+			<!-- /.col -->
+			<div class="col-md-9">
+				<h4 class="h2 mb-3"><?= $a['judul_publikasi']; ?></h4>
+				<div class="card">
 
-							<table class="table table-bordered table-striped">
-								<tr>
-									<th style="width:80%">Keterangan</th>
-									<th>Dokumen</th>
-								</tr>
-								<tr>
-									<td>File Jurnal</td>
-									<td>										
+					<div class="card-body">
+						<div class="tab-content">
+							<div class="active tab-pane" id="activity">
+								<?= $a['deskripsi']; ?>
 
-										<?php										
+								<table class="table table-bordered table-striped mt-3">
+
+									<tr>
+										<td style="width:80%">File Publikasi (PDF)</td>
+										<td>
+
+											<?php										
 										if ($a['file'] == "") { 
 											if ($this->session->userdata['is_admin'] == 2) {
 											?>
-												<a href="<?php echo base_url('admin/publikasi/tambah_dokumen/file/'. $a['id_publikasi']); ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i>
+											<a href="<?php echo base_url('admin/publikasi/tambah_dokumen/file/'. $a['id_publikasi']); ?>"
+												class="btn btn-info btn-sm"><i class="fa fa-upload"></i>
 												Unggah</a>
-										<?php } else { echo "Belum ada File"; }
+											<?php } else { echo "Belum ada File"; }
 											} else {
 										?>
-											<a href="<?php echo base_url(); ?><?= $a['file']; ?>" class="btn btn-warning btn-sm" target="_blank"><i class="fa fa-download"></i> Unduh</a> 
-											
-										<?php if ($this->session->userdata['is_admin'] == 2) { ?>
-											
-											<a title="Edit File Proposal" href="<?php echo base_url('admin/publikasi/tambah_dokumen/file/'. $a['id_publikasi']); ?>" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
+											<a href="<?php echo base_url(); ?><?= $a['file']; ?>"
+												class="btn btn-warning btn-sm" target="_blank"><i
+													class="fa fa-download"></i> Unduh</a>
+
+											<?php if ($this->session->userdata['is_admin'] == 2) { ?>
+
+											<a title="Edit File Proposal"
+												href="<?php echo base_url('admin/publikasi/tambah_dokumen/file/'. $a['id_publikasi']); ?>"
+												class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i>
 											</a>
 
 											<?php }										
 										}
 										
 										?>
-									</td>
-								</tr>
+										</td>
+									</tr>
 
-								</tr>
-							</table>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
-					<div class="card">
-						<div class="card-header pl-3 pt-2 pb-2">
-							Gambar
-							<?php
+				</div>
+				<div class="card">
+					<div class="card-header pl-3 pt-2 pb-2">
+						Gambar
+						<?php
 							if ($this->session->userdata['is_admin'] == 2) {
 								
 							?>
-									<a class="btn btn-warning btn-sm float-right" href="<?php echo base_url(); ?>admin/publikasi/tambah_kegiatan/<?= $a['id_publikasi']; ?>">
-										<i class="fas fa-image"></i> Tambah/Edit Gambar</a>
-							<?php
+						<a class="btn btn-warning btn-sm float-right"
+							href="<?php echo base_url(); ?>admin/publikasi/tambah_kegiatan/<?= $a['id_publikasi']; ?>">
+							<i class="fas fa-image"></i> Tambah/Edit Gambar</a>
+						<?php
 							
 							} // endif is admin
 							?>
-						</div><!-- /.card-header -->
-						<div class="card-body">
-							<?php
+					</div><!-- /.card-header -->
+					<div class="card-body">
+						<?php
 							foreach ($dokumentasi_kegiatan->result_array() as $d) {
 							?>
 
-								<a href="<?php echo base_url(); ?><?= $d['photo']; ?>" data-toggle="lightbox" data-title="<?= $d['nama']; ?>" data-gallery="gallery">
-									<img width="200" src="<?php echo base_url(); ?><?= $d['photo']; ?>" class="img-thumbnail mb-2" />
-								</a>
+						<a href="<?php echo base_url(); ?><?= $d['photo']; ?>" data-toggle="lightbox"
+							data-title="<?= $d['nama']; ?>" data-gallery="gallery">
+							<img width="200" src="<?php echo base_url(); ?><?= $d['photo']; ?>"
+								class="img-thumbnail mb-2" />
+						</a>
 
-							<?php } ?>
+						<?php } ?>
 
-							<!-- /.tab-pane -->
-						</div>
-						<br />
-						
+						<!-- /.tab-pane -->
 					</div>
+					<br />
+
+				</div>
 				<?php
 			}
 				?>
-				</div>
-				<script src="<?= base_url(); ?>public/plugins/moment/moment.min.js"></script>
-				<script src="<?= base_url(); ?>public/plugins/daterangepicker/daterangepicker.js"></script>
-				<script>
-					$(function() {
-						$('#tanggal').daterangepicker({
-							singleDatePicker: true,
-							showDropdowns: true,
-							minYear: 2019,
-							maxYear: parseInt(moment().format('YYYY'), 10)
-						});
-					});
-
-					$("#publikasi").addClass('menu-open');
-					$("#publikasi .detailpublikasi a.nav-link").addClass('active');
-				</script>
 			</div>
-			<!-- /.tab-content -->
-		</div><!-- /.card-body -->
+			<script src="<?= base_url(); ?>public/plugins/moment/moment.min.js"></script>
+			<script src="<?= base_url(); ?>public/plugins/daterangepicker/daterangepicker.js"></script>
+			<script>
+				$(function () {
+					$('#tanggal').daterangepicker({
+						singleDatePicker: true,
+						showDropdowns: true,
+						minYear: 2019,
+						maxYear: parseInt(moment().format('YYYY'), 10)
+					});
+				});
+
+				$("#publikasi").addClass('menu-open');
+				$("#publikasi .detailpublikasi a.nav-link").addClass('active');
+
+			</script>
 		</div>
-		<!-- /.nav-tabs-custom -->
-		</div>
-		<!-- /.col -->
-		</div>
-		<!-- /.row -->
-		</div><!-- /.container-fluid -->
-	</section>
-	<!-- /.content -->
+		<!-- /.tab-content -->
+	</div><!-- /.card-body -->
+	</div>
+	<!-- /.nav-tabs-custom -->
+	</div>
+	<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
