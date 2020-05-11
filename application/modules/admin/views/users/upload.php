@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Tambah Pengguna</h1>
+                <h1>Upload Pengguna</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -92,14 +92,14 @@
                         echo form_open_multipart(base_url('admin/users/upload'), 'class="form-horizontal"') ?>
 
                         <div class="card-header py-3">
-                            <i class="fa fa-exclamation-triangle"></i><strong> Panduan Import
+                            <i class="fa fa-exclamation-triangle"></i><strong> Panduan Upload
                                 Pengguna</strong>
                         </div>
 
                         <div class="card-body">
                             <ol class="panduan-pengisian">
                                 <li>Ekstensi File yang didukung hanya .xlsx</li>
-                                <li>Data yang diimport harus mengikuti template yang sudah disediakan. <a href="<?= base_url('public/template/import_users.xlsx'); ?>" class="btn btn-perak btn-sm"><i class="fas fa-file-excel"></i> Unduh Template
+                                <li>Data yang diupload harus mengikuti template yang sudah disediakan. <a href="<?= base_url('public/template/import_users.xlsx'); ?>" class="btn btn-perak btn-sm"><i class="fas fa-file-excel"></i> Unduh Template
                                         Excel</a></li>
                             </ol>
                             <div class="form-group">
