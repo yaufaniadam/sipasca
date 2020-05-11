@@ -99,7 +99,7 @@
                         <div class="card-body">
                             <ol class="panduan-pengisian">
                                 <li>Ekstensi File yang didukung hanya .xlsx</li>
-                                <li>Data yang diimport harus mengikuti template yang sudah disediakan. <a href="<?= base_url('public/template-excel/import_users.xlsx'); ?>" class="btn btn-perak btn-sm"><i class="fas fa-file-excel"></i> Unduh Template
+                                <li>Data yang diimport harus mengikuti template yang sudah disediakan. <a href="<?= base_url('public/template/import_users.xlsx'); ?>" class="btn btn-perak btn-sm"><i class="fas fa-file-excel"></i> Unduh Template
                                         Excel</a></li>
                             </ol>
                             <div class="form-group">
