@@ -201,6 +201,15 @@
                
             </ul>
           </li>
+          <li class="nav-item" id="prodi">
+            <a href="<?=base_url('admin/prodi'); ?>" class="nav-link">
+              <i class="nav-icon fas fa-graduation-cap"></i>
+              <p>
+                Program Studi               
+              </p>
+            </a>
+            
+          </li>
 
           <?php } // endif is admin ?>
 
