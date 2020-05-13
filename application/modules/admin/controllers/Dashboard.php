@@ -7,9 +7,7 @@
 			$this->load->model('dashboard_model');
 		}
 
-		public function index(){
-			
-			
+		public function index(){				
 			$data['jumlah_penelitian'] = $this->dashboard_model->jumlah_penelitian();
 			$data['jumlah_publikasi'] = $this->dashboard_model->jumlah_publikasi();
 			$data['jumlah_pengabdian'] = $this->dashboard_model->jumlah_pengabdian();

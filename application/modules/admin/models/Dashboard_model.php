@@ -35,15 +35,15 @@
 			
 			if($this->session->userdata('id_prodi')==0)
 			{	
-			return $this->db->query("select * from penelitian");
+			return $this->db->query("select * from penelitian where status='0'");
 			}
 			elseif($this->session->userdata('is_admin')==4)
 			{	
-			return $this->db->query("select * from penelitian where id_dosen='".$this->session->userdata('user_id')."'");
+			return $this->db->query("select * from penelitian where id_dosen='".$this->session->userdata('user_id')."' and status='0'");
 			}
 			else
 			{
-			return $this->db->query("select * from penelitian  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			return $this->db->query("select * from penelitian  where id_prodi='".$this->session->userdata('id_prodi')."' and status='0'");
 			}
 		}
 		
@@ -52,15 +52,15 @@
 			
 			if($this->session->userdata('id_prodi')==0)
 			{	
-			return $this->db->query("select * from publikasi");
+			return $this->db->query("select * from publikasi where status='0'");
 			}
 			elseif($this->session->userdata('is_admin')==4)
 			{	
-			return $this->db->query("select * from publikasi where id_dosen='".$this->session->userdata('user_id')."'");
+			return $this->db->query("select * from publikasi where id_dosen='".$this->session->userdata('user_id')."' and status='0'");
 			}
 			else
 			{
-			return $this->db->query("select * from publikasi  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			return $this->db->query("select * from publikasi  where id_prodi='".$this->session->userdata('id_prodi')."' and status='0'");
 			}
 		}
 		
@@ -70,30 +70,30 @@
 			
 			if($this->session->userdata('id_prodi')==0)
 			{	
-			return $this->db->query("select * from pengabdian");
+			return $this->db->query("select * from pengabdian where status='0'");
 			}
 			elseif($this->session->userdata('is_admin')==4)
 			{	
-			return $this->db->query("select * from pengabdian where id_dosen='".$this->session->userdata('user_id')."'");
+			return $this->db->query("select * from pengabdian where id_dosen='".$this->session->userdata('user_id')."' and status='0'");
 			}
 			else
 			{
-			return $this->db->query("select * from pengabdian  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			return $this->db->query("select * from pengabdian  where id_prodi='".$this->session->userdata('id_prodi')."' and status='0'");
 			}
 		}
 		public function jumlah_buku(){
 			
 			if($this->session->userdata('id_prodi')==0)
 			{	
-			return $this->db->query("select * from buku");
+			return $this->db->query("select * from buku where status='0'");
 			}
 			elseif($this->session->userdata('is_admin')==4)
 			{	
-			return $this->db->query("select * from buku where id_dosen='".$this->session->userdata('user_id')."'");
+			return $this->db->query("select * from buku where id_dosen='".$this->session->userdata('user_id')."' and status='0'");
 			}
 			else
 			{
-			return $this->db->query("select * from buku  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			return $this->db->query("select * from buku  where id_prodi='".$this->session->userdata('id_prodi')."' and status='0'");
 			}
 		}
 
@@ -101,15 +101,15 @@
 			
 			if($this->session->userdata('id_prodi')==0)
 			{	
-			return $this->db->query("select * from haki");
+			return $this->db->query("select * from haki where status='0'");
 			}
 			elseif($this->session->userdata('is_admin')==4)
 			{	
-			return $this->db->query("select * from haki where id_dosen='".$this->session->userdata('user_id')."'");
+			return $this->db->query("select * from haki where id_dosen='".$this->session->userdata('user_id')."' and status='0'");
 			}
 			else
 			{
-			return $this->db->query("select * from haki  where id_prodi='".$this->session->userdata('id_prodi')."'");
+			return $this->db->query("select * from haki  where id_prodi='".$this->session->userdata('id_prodi')."' and status='0'");
 			}
 		}
 		
