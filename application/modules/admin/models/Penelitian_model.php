@@ -11,14 +11,13 @@
 			$this->db->from('penelitian');	
 			$this->db->join('ci_users', 'ci_users.id = penelitian.id_dosen ', 'left');
 			$this->db->join('prodi', 'prodi.id_prodi = penelitian.id_prodi ', 'left');
-			
 
-			//cek pada url jika kategorinya kosong, maka menampilkan semua penelitian, jika ada isinya maka menampilkan sesuai isinya
-			//http://localhost/sipasca/penelitian/[kategorinya] 
 
-			/*if($status != '') {		
+			if($status != '') {		
 				$this->db->where('status', $status);
-			}*/
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->order_by('id_penelitian', 'ASC');
 			$query = $this->db->get();
 
@@ -33,7 +32,11 @@
 			$this->db->select('penelitian.*,ci_users.firstname');
 			$this->db->from('penelitian');	
 			$this->db->join('ci_users', 'ci_users.id = penelitian.id_dosen ', 'left');
-			
+			if($status != '') {		
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->where('penelitian.id_dosen', $this->session->userdata('user_id'));
 
 			$this->db->order_by('id_penelitian', 'ASC');
@@ -52,7 +55,11 @@
 			$this->db->select('penelitian.*,ci_users.firstname');
 			$this->db->from('penelitian');	
 			$this->db->join('ci_users', 'ci_users.id = penelitian.id_dosen ', 'left');
-			
+			if($status != '') {		
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->where('penelitian.id_prodi', $this->session->userdata('id_prodi'));
 
 			$this->db->order_by('id_penelitian', 'ASC');

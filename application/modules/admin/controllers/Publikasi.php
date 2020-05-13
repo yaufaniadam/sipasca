@@ -314,8 +314,15 @@ class Publikasi extends Admin_Controller
 
 	public function hapus($id = 0, $uri = NULL)
 	{
-		$this->db->delete('publikasi', array('id_publikasi' => $id));
+		$this->db->update('publikasi', array('status' => 1), array('id_publikasi' => $id));
 		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
+		redirect(base_url('admin/publikasi/index'));
+	}
+
+	public function restore($id = 0, $uri = NULL)
+	{
+		$this->db->update('publikasi', array('status' => '0'), array('id_publikasi' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil direstore!');
 		redirect(base_url('admin/publikasi/index'));
 	}
 

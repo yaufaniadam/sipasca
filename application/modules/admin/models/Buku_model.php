@@ -13,13 +13,11 @@ class Buku_model extends CI_Model
 			$this->db->join('ci_users', 'ci_users.id = buku.id_dosen ', 'left');
 			$this->db->join('prodi', 'prodi.id_prodi = buku.id_prodi ', 'left');
 
-
-			//cek pada url jika kategorinya kosong, maka menampilkan semua buku, jika ada isinya maka menampilkan sesuai isinya
-			//http://localhost/sipasca/buku/[kategorinya] 
-
-			/*if($status != '') {		
+			if ($status != '') {
 				$this->db->where('status', $status);
-			}*/
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->order_by('id_buku', 'ASC');
 			$query = $this->db->get();
 
@@ -29,7 +27,11 @@ class Buku_model extends CI_Model
 			$this->db->select('buku.*,ci_users.firstname');
 			$this->db->from('buku');
 			$this->db->join('ci_users', 'ci_users.id = buku.id_dosen ', 'left');
-
+			if ($status != '') {
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->where('buku.id_dosen', $this->session->userdata('user_id'));
 
 			$this->db->order_by('id_buku', 'ASC');
@@ -41,7 +43,11 @@ class Buku_model extends CI_Model
 			$this->db->select('buku.*,ci_users.firstname');
 			$this->db->from('buku');
 			$this->db->join('ci_users', 'ci_users.id = buku.id_dosen ', 'left');
-
+			if ($status != '') {
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
 			$this->db->where('buku.id_prodi', $this->session->userdata('id_prodi'));
 
 			$this->db->order_by('id_buku', 'ASC');
@@ -50,9 +56,6 @@ class Buku_model extends CI_Model
 			return $result = $query->result_array();
 		}
 	}
-
-
-
 
 	public function detail_buku($id_buku)
 	{

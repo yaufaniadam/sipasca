@@ -263,30 +263,15 @@ class Penelitian extends Admin_Controller
 		}
 		//Upload File Akhir		
 
-
-
 		echo $file_akhir;
 
-
 		//exit();
-
-
-
-
-
-
-
-
 
 		$input = array(
 			'status' => 2,
 			'file_sk' => $file_sk,
 			'file_akhir' => $file_akhir,
-			
-
-
 		);
-
 
 		$where = array('id_penelitian' => $_POST['id_penelitian']);
 
@@ -436,8 +421,15 @@ class Penelitian extends Admin_Controller
 
 	public function hapus($id = 0, $uri = NULL)
 	{
-		$this->db->delete('penelitian', array('id_penelitian' => $id));
+		$this->db->update('penelitian', array('status' => '1'), array('id_penelitian' => $id));
 		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
+		redirect(base_url('admin/penelitian/index'));
+	}
+
+	public function restore($id = 0, $uri = NULL)
+	{
+		$this->db->update('penelitian', array('status' => '0'), array('id_penelitian' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil direstore!');
 		redirect(base_url('admin/penelitian/index'));
 	}
 } //class

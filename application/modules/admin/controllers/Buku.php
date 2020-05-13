@@ -160,10 +160,18 @@ class Buku extends Admin_Controller
 
 	public function hapus($id = 0, $uri = NULL)
 	{
-		$this->db->delete('buku', array('id_buku' => $id));
+		$this->db->update('buku', array('status' => '1'), array('id_buku' => $id));
 		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
 		redirect(base_url('admin/buku/index'));
 	}
+
+	public function restore($id = 0, $uri = NULL)
+	{
+		$this->db->update('buku', array('status' => '0'), array('id_buku' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil direstore!');
+		redirect(base_url('admin/buku/index'));
+	}
+
 
 	public function tambah_dokumen($kat = 0, $id_buku = 0)
 	{

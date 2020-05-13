@@ -4,8 +4,6 @@ class Haki_model extends CI_Model
 
 	public function get_haki($status)
 	{
-
-
 		if ($this->session->userdata('id_prodi') == 0) {
 
 			$this->db->select('haki.*,ci_users.firstname ,prodi.prodi');
@@ -13,13 +11,12 @@ class Haki_model extends CI_Model
 			$this->db->join('ci_users', 'ci_users.id = haki.id_dosen ', 'left');
 			$this->db->join('prodi', 'prodi.id_prodi = haki.id_prodi ', 'left');
 
-
-			//cek pada url jika kategorinya kosong, maka menampilkan semua haki, jika ada isinya maka menampilkan sesuai isinya
-			//http://localhost/sipasca/haki/[kategorinya] 
-
-			/*if($status != '') {		
+			if($status != '') {		
 				$this->db->where('status', $status);
-			}*/
+			} else {
+				$this->db->where('status', 0);
+			}
+
 			$this->db->order_by('id_haki', 'ASC');
 			$query = $this->db->get();
 
@@ -31,6 +28,12 @@ class Haki_model extends CI_Model
 			$this->db->join('ci_users', 'ci_users.id = haki.id_dosen ', 'left');
 
 			$this->db->where('haki.id_dosen', $this->session->userdata('user_id'));
+
+			if($status != '') {		
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
 
 			$this->db->order_by('id_haki', 'ASC');
 			$query = $this->db->get();
@@ -44,6 +47,12 @@ class Haki_model extends CI_Model
 
 			$this->db->where('haki.id_prodi', $this->session->userdata('id_prodi'));
 
+			if($status != '') {		
+				$this->db->where('status', $status);
+			} else {
+				$this->db->where('status', 0);
+			}
+			
 			$this->db->order_by('id_haki', 'ASC');
 			$query = $this->db->get();
 

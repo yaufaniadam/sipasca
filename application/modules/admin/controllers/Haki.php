@@ -438,14 +438,18 @@ class Haki extends Admin_Controller
 		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
 		redirect(base_url('admin/haki/tambah_kegiatan/' . $id));
 	}
-
-
-
-
+	
 	public function hapus($id = 0, $uri = NULL)
 	{
-		$this->db->delete('haki', array('id_haki' => $id));
+		$this->db->update('haki', array('status' => '1'), array('id_haki' => $id));
 		$this->session->set_flashdata('msg', 'Data berhasil dihapus!');
+		redirect(base_url('admin/haki/index'));
+	}
+
+	public function restore($id = 0, $uri = NULL)
+	{
+		$this->db->update('haki', array('status' => '0'), array('id_haki' => $id));
+		$this->session->set_flashdata('msg', 'Data berhasil direstore!');
 		redirect(base_url('admin/haki/index'));
 	}
 
